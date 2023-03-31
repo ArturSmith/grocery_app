@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class UserScreen extends StatefulWidget {
+  const UserScreen({super.key});
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<UserScreen> createState() => _UserScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);

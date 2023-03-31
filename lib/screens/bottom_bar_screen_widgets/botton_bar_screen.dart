@@ -5,7 +5,7 @@ import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/buy_screen.dart';
 import 'package:new_project/screens/categories_screen.dart';
-import 'package:new_project/screens/settings_screen.dart';
+import 'package:new_project/screens/user_screen.dart';
 import 'package:new_project/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/moon_botton.dart';
@@ -27,7 +27,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     {"page": HomeScreen(), "title": "Home"},
     {"page": CategoriesScreen(), "title": "Categories"},
     {"page": BuyScreen(), "title": "Order grocery"},
-    {"page": SettingsScreen(), "title": "Settings"}
+    {"page": UserScreen(), "title": "User"}
   ];
 
   late final AnimationController _animationController = AnimationController(

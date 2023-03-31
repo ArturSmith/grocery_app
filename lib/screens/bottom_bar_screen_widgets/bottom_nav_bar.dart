@@ -53,7 +53,7 @@ class BottomNavBar extends StatelessWidget {
                 icon: Icon(selectedIndex == 3
                     ? IconlyBold.profile
                     : IconlyLight.profile),
-                label: "Setting"),
+                label: "User"),
           ],
         ),
       ),
