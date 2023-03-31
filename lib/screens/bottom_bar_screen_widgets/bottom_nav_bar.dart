@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:new_project/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 import '../../providers/dark_theme_provider.dart';
 
@@ -20,12 +21,14 @@ class BottomNavBar extends StatelessWidget {
       ),
       child: BottomAppBar(
         clipBehavior: Clip.antiAlias,
-        notchMargin: 8,
+        notchMargin: 15,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
-          backgroundColor: _dark ? Colors.white : Colors.black,
+          backgroundColor:
+              _dark ? Colors.white : AppColors.darkThemeBacgroundColor,
           unselectedItemColor: _dark ? Colors.grey : Colors.white,
-          selectedItemColor: _dark ? Colors.amber : Colors.amber,
+          selectedItemColor:
+              _dark ? AppColors.darkThemeBacgroundColor : Colors.amber,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
@@ -33,23 +36,23 @@ class BottomNavBar extends StatelessWidget {
           onTap: selectScreen,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(selectedIndex == 0
+                icon: Icon(
+                  selectedIndex == 0 ? IconlyBold.home : IconlyLight.home,
+                ),
+                label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(selectedIndex == 1
                     ? IconlyBold.category
                     : IconlyLight.category),
                 label: "Categories"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  selectedIndex == 1 ? IconlyBold.profile : IconlyLight.profile,
-                ),
-                label: "User"),
             BottomNavigationBarItem(
                 icon:
                     Icon(selectedIndex == 2 ? IconlyBold.buy : IconlyLight.buy),
                 label: "Buy"),
             BottomNavigationBarItem(
                 icon: Icon(selectedIndex == 3
-                    ? IconlyBold.setting
-                    : IconlyLight.setting),
+                    ? IconlyBold.profile
+                    : IconlyLight.profile),
                 label: "Setting"),
           ],
         ),
