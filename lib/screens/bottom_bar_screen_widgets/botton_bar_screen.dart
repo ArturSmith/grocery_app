@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/buy_screen.dart';
 import 'package:new_project/screens/categories_screen.dart';
-import 'package:new_project/screens/user_screen.dart';
+import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
 import 'package:new_project/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/moon_botton.dart';
@@ -24,7 +25,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     {"page": HomeScreen(), "title": "Home"},
     {"page": CategoriesScreen(), "title": "Categories"},
     {"page": BuyScreen(), "title": "Order grocery"},
-    {"page": UserScreen(), "title": "User"}
+    {"page": UserScreen(), "title": "User settings"}
   ];
 
   late final AnimationController _animationController = AnimationController(
@@ -61,7 +62,8 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     final bool isDark = provider.getDarkTheme;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: isDark ? Theme.of(context).cardColor : Colors.white,
+          backgroundColor:
+              isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
           title: Text(
             _pages[_selectedIndex]["title"],
             style: TextStyle(

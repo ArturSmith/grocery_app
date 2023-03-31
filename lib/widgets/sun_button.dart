@@ -4,7 +4,7 @@ class SunButton extends StatelessWidget {
   const SunButton({super.key, this.onTap, required this.animation});
   final double size = 40;
   final Function? onTap;
-  final animation;
+  final Animation<double> animation;
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
