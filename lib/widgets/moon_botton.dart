@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 class MoonButton extends StatelessWidget {
-  const MoonButton({super.key, this.onTap});
+  const MoonButton({super.key, this.onTap, required this.animation});
   final Function? onTap;
+  final Animation<double> animation;
   @override
   Widget build(BuildContext context) {
     const double moonSize = 40;
-    const double starSize = moonSize * 0.3;
+    const double starSize = moonSize * 0.6;
     return GestureDetector(
       onTap: () => onTap,
       child: Stack(
@@ -28,10 +29,16 @@ class MoonButton extends StatelessWidget {
               color: AppColors.darkThemeBacgroundColor,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: const Center(
-                child: Icon(
-              Icons.star,
-              size: starSize,
+            child: Center(
+                child: AnimatedSize(
+              duration: const Duration(seconds: 1),
+              child: ScaleTransition(
+                scale: animation,
+                child: const Icon(
+                  Icons.star,
+                  size: starSize,
+                ),
+              ),
             )),
           ),
         ],

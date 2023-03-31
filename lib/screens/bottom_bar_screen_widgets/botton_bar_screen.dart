@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/buy_screen.dart';
 import 'package:new_project/screens/categories_screen.dart';
@@ -74,9 +71,9 @@ class _BottomBarScreenState extends State<BottomBarScreen>
           ),
           centerTitle: true,
         ),
-        floatingActionButton: RotationTransition(
-            turns: _animation,
-            child: isDark ? const MoonButton() : const SunButton()),
+        floatingActionButton: isDark
+            ? MoonButton(animation: _animation)
+            : SunButton(animation: _animation),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         extendBody: true,
         body: _pages[_selectedIndex]["page"],
