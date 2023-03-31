@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/botton_bar_screen.dart';
+import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -11,6 +12,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.black,
+    statusBarColor: Colors.black,
+  ));
   runApp(const MyApp());
 }
 
