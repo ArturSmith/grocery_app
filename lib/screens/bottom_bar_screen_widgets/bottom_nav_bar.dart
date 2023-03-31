@@ -7,7 +7,7 @@ import '../../providers/dark_theme_provider.dart';
 class BottomNavBar extends StatelessWidget {
   BottomNavBar(
       {super.key, required this.selectScreen, required this.selectedIndex});
-  int selectedIndex;
+  int selectedIndex = 1;
   final Function(int)? selectScreen;
   @override
   Widget build(BuildContext context) {

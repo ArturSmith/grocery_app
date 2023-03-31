@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/buy_screen.dart';
-import 'package:new_project/screens/categories_screen.dart';
+import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
 import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
 import 'package:new_project/screens/home_screen.dart';
 import 'package:provider/provider.dart';
