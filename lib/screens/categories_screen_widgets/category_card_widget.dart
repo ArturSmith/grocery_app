@@ -1,35 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
+import 'package:new_project/screens/categories_screen_widgets/category_detail_info_widget.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCardWidget extends StatelessWidget {
   const CategoryCardWidget(
-      {super.key, required this.categoryName, required this.color});
-  final String categoryName;
+      {super.key,
+      required this.categoryName,
+      required this.color,
+      required this.image});
+  final String categoryName, image;
   final Color color;
+
   @override
   Widget build(BuildContext context) {
     final _isDarkTheme = Provider.of<DarkThemeProvider>(context).getDarkTheme;
-    return Container(
-      margin: const EdgeInsets.all(6),
-      decoration: BoxDecoration(
-        color: _isDarkTheme
-            ? Colors.white.withOpacity(0.8)
-            : color.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-            color: _isDarkTheme ? Colors.transparent : color.withOpacity(0.4),
-            width: 2),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            categoryName,
-            style: const TextStyle(color: Colors.black, fontSize: 20),
-          )
-        ],
-      ),
+    final size = MediaQuery.of(context).size.width;
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: (() {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  CategoryDetailInfoWidget(category: categoryName),
+            ));
+          }),
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 13),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: _isDarkTheme
+                  ? Colors.white.withOpacity(0.8)
+                  : color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                  color: _isDarkTheme
+                      ? Colors.transparent
+                      : color.withOpacity(0.4),
+                  width: 2),
+            ),
+            child: SvgPicture.asset(
+              image,
+              width: size * 0.4,
+              height: size * 0.4,
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                border: Border.all(color: Colors.black)),
+            child: Text(
+              categoryName,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                  color: Colors.black),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
