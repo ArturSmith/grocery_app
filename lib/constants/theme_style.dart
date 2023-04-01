@@ -27,13 +27,13 @@ class ThemeStyles {
     );
   }
 
-  static setColor(BuildContext context, bool shouldBeWhite) {
+  static setColor(BuildContext context, bool whiteWhenDark) {
     final provider = Provider.of<DarkThemeProvider>(context);
     final isDark = provider.getDarkTheme;
     Color textAndIcons =
         isDark ? Colors.white : AppColors.darkThemeBacgroundColor;
     Color background =
         isDark ? AppColors.darkThemeBacgroundColor : Colors.white;
-    return shouldBeWhite ? textAndIcons : background;
+    return whiteWhenDark ? textAndIcons : background;
   }
 }
