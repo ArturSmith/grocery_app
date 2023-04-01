@@ -18,32 +18,35 @@ class _SunButtonState extends State<SunButton> with TickerProviderStateMixin {
       turns: widget.animation,
       child: GestureDetector(
         onTap: () => widget.onTap,
-        child: Stack(children: [
-          Transform.rotate(
-            angle: 1,
-            child: Container(
-              color: Colors.amber,
-              width: size,
-              height: size,
+        child: Hero(
+          tag: 'sunButton',
+          child: Stack(children: [
+            Transform.rotate(
+              angle: 1,
+              child: Container(
+                color: Colors.amber,
+                width: size,
+                height: size,
+              ),
             ),
-          ),
-          Transform.rotate(
-            angle: 2,
-            child: Container(
-              color: Colors.amber,
-              width: size,
-              height: size,
+            Transform.rotate(
+              angle: 2,
+              child: Container(
+                color: Colors.amber,
+                width: size,
+                height: size,
+              ),
             ),
-          ),
-          Transform.rotate(
-            angle: 3,
-            child: Container(
-              color: Colors.amber,
-              width: size,
-              height: size,
+            Transform.rotate(
+              angle: 3,
+              child: Container(
+                color: Colors.amber,
+                width: size,
+                height: size,
+              ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

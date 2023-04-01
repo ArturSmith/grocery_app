@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/categories_screen_widgets/category_detail_info_widget.dart';
+import 'package:new_project/screens/products_screen/products_screen.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCardWidget extends StatelessWidget {
@@ -19,12 +19,15 @@ class CategoryCardWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size.width;
     return Stack(
       children: [
-        GestureDetector(
+        InkWell(
+          borderRadius: BorderRadius.circular(20),
           onTap: (() {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  CategoryDetailInfoWidget(category: categoryName),
-            ));
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                    transitionDuration: const Duration(seconds: 1),
+                    pageBuilder: ((context, animation, secondaryAnimation) =>
+                        ProductsScreen(category: categoryName))));
           }),
           child: Container(
             margin: const EdgeInsets.only(bottom: 13),

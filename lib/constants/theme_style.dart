@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/services/dark_theme_prefs.dart';
 import 'package:provider/provider.dart';
 
 class ThemeStyles {
@@ -28,9 +27,13 @@ class ThemeStyles {
     );
   }
 
-  static setColor(BuildContext context) {
+  static setColor(BuildContext context, bool shouldBeWhite) {
     final provider = Provider.of<DarkThemeProvider>(context);
     final isDark = provider.getDarkTheme;
-    return isDark ? Colors.white : AppColors.darkThemeBacgroundColor;
+    Color textAndIcons =
+        isDark ? Colors.white : AppColors.darkThemeBacgroundColor;
+    Color background =
+        isDark ? AppColors.darkThemeBacgroundColor : Colors.white;
+    return shouldBeWhite ? textAndIcons : background;
   }
 }
