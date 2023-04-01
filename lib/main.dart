@@ -3,11 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_project/constants/theme_style.dart';
+import 'package:new_project/fakeDataBase.dart';
+import 'package:new_project/models/categories_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:provider/provider.dart';
 import 'constants/routes.dart';
 import 'firebase_options.dart';
+import 'models/products_screen_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +52,15 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
+        ChangeNotifierProvider(
+          create: (_) => CategoriesScreenModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProductScreenModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FakeDataBase(),
+        ),
       ],
       child:
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
