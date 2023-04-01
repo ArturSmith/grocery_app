@@ -1,58 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/screens/categories_screen_widgets/category_card_widget.dart';
+import 'package:new_project/constants/my_text_decoration.dart';
+import 'package:new_project/constants/theme_style.dart';
+import 'package:new_project/models/categories_screen_model.dart';
+import 'package:new_project/screens/categories_screen_widgets/categories_screen_body.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({super.key});
-
-  final List<Map<String, dynamic>> data = [
-    {
-      "color": Colors.red,
-      "categoryName": "Fruits",
-      "image": "lib/assets/images/fruits.svg"
-    },
-    {
-      "color": Colors.green,
-      "categoryName": "Vegetables",
-      "image": "lib/assets/images/pumpkin.svg"
-    },
-    {
-      "color": Colors.yellow,
-      "categoryName": "Drinks",
-      "image": "lib/assets/images/drink.svg"
-    },
-    {
-      "color": Colors.purple,
-      "categoryName": "Alhocol",
-      "image": "lib/assets/images/cocktail.svg"
-    },
-    {
-      "color": Colors.blue,
-      "categoryName": "Fish",
-      "image": "lib/assets/images/fish.svg"
-    },
-    {
-      "color": Colors.cyan,
-      "categoryName": "Cakes",
-      "image": "lib/assets/images/cake.svg"
-    },
-  ];
+  const CategoriesScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 240 / 240,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 5,
-              crossAxisCount: 2),
-          itemCount: data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return CategoryCardWidget(
-                categoryName: data[index]["categoryName"],
-                color: data[index]["color"],
-                image: data[index]["image"]);
-          }),
+    final model = Provider.of<CategoriesScreenModel>(context);
+    return FutureBuilder(
+      future: model.getData(context),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+        Widget body;
+        if (snapshot.hasData) {
+          body = CategoriesScreenBody(data: snapshot.data);
+        } else if (snapshot.hasError) {
+          body = Center(
+            child:
+                Text("Error", style: MyTextDecoration.titleTextStyle(context)),
+          );
+        } else {
+          body = Center(
+              child: CircularProgressIndicator(
+            color: ThemeStyles.setColor(context, true),
+          ));
+        }
+        return body;
+      },
     );
   }
 }

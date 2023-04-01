@@ -80,7 +80,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
               isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
           title: Text(
             _pages[_selectedIndex]["title"],
-            style: MyTextDecoration.titleTextStyle(isDark),
+            style: MyTextDecoration.titleTextStyle(context),
           ),
           centerTitle: true,
         ),

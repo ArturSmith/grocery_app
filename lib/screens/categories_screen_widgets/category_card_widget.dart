@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/products_screen/products_screen.dart';
+import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCardWidget extends StatelessWidget {
