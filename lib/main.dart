@@ -5,6 +5,7 @@ import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:provider/provider.dart';
+import 'constants/routes.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -43,12 +44,16 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => DarkThemeProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
+      ],
       child:
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeStyles.themeData(themeProvider.getDarkTheme, context),
+            routes: Routes.routes,
+            initialRoute: "/Home",
             home: const BottomBarScreen());
       }),
     );

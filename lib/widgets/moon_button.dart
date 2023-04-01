@@ -5,6 +5,7 @@ class MoonButton extends StatelessWidget {
   const MoonButton({super.key, this.onTap, required this.animation});
   final Function? onTap;
   final Animation<double> animation;
+
   @override
   Widget build(BuildContext context) {
     const double moonSize = 40;

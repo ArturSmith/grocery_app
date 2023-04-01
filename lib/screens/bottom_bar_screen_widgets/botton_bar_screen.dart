@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/constants/app_colors.dart';
+import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/buy_screen.dart';
+import 'package:new_project/screens/buy_screen_widgets/buy_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
 import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
-import 'package:new_project/screens/home_screen.dart';
+import 'package:new_project/screens/home_screen_widgets/home_screen.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/moon_botton.dart';
+import '../../widgets/moon_button.dart';
 import '../../widgets/sun_button.dart';
 import 'bottom_nav_bar.dart';
 
@@ -21,11 +22,11 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     with TickerProviderStateMixin {
   int _selectedIndex = 0;
 
-  final List<Map<String, dynamic>> _pages = const [
-    {"page": HomeScreen(), "title": "Home"},
+  final List<Map<String, dynamic>> _pages = [
+    {"page": const HomeScreen(), "title": "Home"},
     {"page": CategoriesScreen(), "title": "Categories"},
-    {"page": BuyScreen(), "title": "Order grocery"},
-    {"page": UserScreen(), "title": "User settings"}
+    {"page": const BuyScreen(), "title": "Order"},
+    {"page": const UserScreen(), "title": "User settings"}
   ];
 
   late final AnimationController _animationController = AnimationController(
@@ -62,14 +63,24 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     final bool isDark = provider.getDarkTheme;
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: (() {}),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: isDark
+                        ? Colors.white
+                        : AppColors.darkThemeBacgroundColor,
+                  )),
+            )
+          ],
           backgroundColor:
               isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
           title: Text(
             _pages[_selectedIndex]["title"],
-            style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : Colors.black),
+            style: MyTextDecoration.titleTextStyle(isDark),
           ),
           centerTitle: true,
         ),
