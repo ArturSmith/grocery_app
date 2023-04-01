@@ -76,6 +76,7 @@ flutter:
       - lib/assets/images/cocktail.svg
       - lib/assets/images/fish.svg
       - lib/assets/images/cake.svg
+      - lib/assets/images/tomato.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
