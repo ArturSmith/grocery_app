@@ -9,6 +9,6 @@ class CategoriesScreenModel extends ChangeNotifier {
   Future<List<Map<String, dynamic>>> getData(BuildContext context) {
     final db = Provider.of<FakeDataBase>(context);
     final listOfCategories = db.getInfo();
-    return Future.delayed(const Duration(seconds: 3), (() => listOfCategories));
+    return Future.delayed(const Duration(seconds: 1), (() => listOfCategories));
   }
 }
