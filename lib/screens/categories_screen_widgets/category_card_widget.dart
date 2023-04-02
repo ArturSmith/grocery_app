@@ -20,7 +20,7 @@ class CategoryCardWidget extends StatefulWidget {
 class _CategoryCardWidgetState extends State<CategoryCardWidget>
     with TickerProviderStateMixin {
   late final AnimationController _animationController = AnimationController(
-    duration: const Duration(seconds: 1),
+    duration: const Duration(milliseconds: 300),
     vsync: this,
   );
 
@@ -55,11 +55,16 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget>
             borderRadius: BorderRadius.circular(20),
             onTap: (() {
               Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                      transitionDuration: const Duration(seconds: 1),
-                      pageBuilder: ((context, animation, secondaryAnimation) =>
-                          ProductsScreen(category: widget.categoryName))));
+                context,
+                PageRouteBuilder(
+                  transitionDuration: const Duration(milliseconds: 400),
+                  pageBuilder: ((_, __, ___) =>
+                      ProductsScreen(category: widget.categoryName)),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(opacity: animation, child: child),
+                ),
+              );
             }),
             child: Container(
               margin: const EdgeInsets.only(bottom: 13),

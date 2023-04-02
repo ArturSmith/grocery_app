@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
+import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/buy_screen_widgets/buy_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
@@ -68,16 +69,11 @@ class _BottomBarScreenState extends State<BottomBarScreen>
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                   onPressed: (() {}),
-                  icon: Icon(
-                    Icons.favorite,
-                    color: isDark
-                        ? Colors.white
-                        : AppColors.darkThemeBacgroundColor,
-                  )),
+                  icon: Icon(Icons.favorite,
+                      color: ThemeStyles.setColor(context, true))),
             )
           ],
-          backgroundColor:
-              isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
+          backgroundColor: ThemeStyles.setColor(context, false),
           title: Text(
             _pages[_selectedIndex]["title"],
             style: MyTextDecoration.titleTextStyle(context),

@@ -53,6 +53,22 @@ class FakeDataBase extends ChangeNotifier {
         {Str.IMAGE: "lib/assets/images/cake.svg", Str.NAME: "Browny"},
       ]
     },
+    {
+      Str.NAME: "Bakery",
+      Str.COLOR: Colors.orange,
+      Str.IMAGE: "lib/assets/images/dripper.svg",
+      Str.PRODUCTS: [
+        {Str.IMAGE: "lib/assets/images/dripper.svg", Str.NAME: "Croissant"},
+      ]
+    },
+    {
+      Str.NAME: "Coffee",
+      Str.COLOR: Colors.brown,
+      Str.IMAGE: "lib/assets/images/coffee.svg",
+      Str.PRODUCTS: [
+        {Str.IMAGE: "lib/assets/images/coffee.svg", Str.NAME: "Cappuccino"},
+      ]
+    },
   ];
 
   List<Map<String, dynamic>> getInfo() {

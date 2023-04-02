@@ -23,6 +23,17 @@ class ProductsScreen extends StatelessWidget {
     final isDark = provider.getDarkTheme;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                onPressed: (() {}),
+                icon: Icon(
+                  Icons.favorite,
+                  color: ThemeStyles.setColor(context, false),
+                )),
+          )
+        ],
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
