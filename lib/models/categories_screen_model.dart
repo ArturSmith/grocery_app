@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class CategoriesScreenModel extends ChangeNotifier {
   Future<List<Map<String, dynamic>>> getData(BuildContext context) {
     final db = Provider.of<FakeDataBase>(context);
-    final listOfCategories = db.getInfo();
+    final listOfCategories = db.getCategoriesInfo();
     return Future.delayed(const Duration(seconds: 1), (() => listOfCategories));
   }
 }

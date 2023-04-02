@@ -5,12 +5,15 @@ import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/products_screen_widgets/product_card.dart';
 import 'package:new_project/screens/products_screen_widgets/sun_over_info.dart';
 import 'package:provider/provider.dart';
+import '../../constants/strings.dart';
 import '../../models/products_screen_model.dart';
 import 'moon_over_info.dart';
 
 class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key, required this.category});
+  ProductsScreen({super.key, required this.category});
   final String category;
+
+  bool isDark = false;
 
   Future<List<Map<String, dynamic>>> getData(BuildContext context) {
     final model = Provider.of<ProductScreenModel>(context);
@@ -20,7 +23,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);
-    final isDark = provider.getDarkTheme;
+    isDark = provider.getDarkTheme;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -88,8 +91,10 @@ class Body extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (BuildContext context, int index) {
             return ProductCard(
-              image: data[index]["image"],
-              name: data[index]["name"],
+              sale: data[index][Str.DISCOUNT],
+              price: data[index][Str.PRICE],
+              image: data[index][Str.IMAGE],
+              name: data[index][Str.NAME],
             );
           },
         ),

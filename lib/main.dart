@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/fakeDataBase.dart';
 import 'package:new_project/models/categories_screen_model.dart';
+import 'package:new_project/models/home_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:provider/provider.dart';
@@ -60,6 +61,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => FakeDataBase(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HomeScreenModel(),
         ),
       ],
       child:

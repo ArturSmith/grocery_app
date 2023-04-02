@@ -10,6 +10,7 @@ class CategoriesScreenBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GridView.builder(
+          physics: const BouncingScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: 240 / 240,
               crossAxisSpacing: 10,

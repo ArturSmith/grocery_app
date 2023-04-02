@@ -20,9 +20,9 @@ class MoonButton extends StatelessWidget {
               width: moonSize,
               height: moonSize,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50),
-              ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(color: Colors.white)),
             ),
             Container(
               width: moonSize * 0.85,

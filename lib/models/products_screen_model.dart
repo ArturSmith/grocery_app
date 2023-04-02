@@ -6,8 +6,7 @@ class ProductScreenModel extends ChangeNotifier {
   Future<List<Map<String, dynamic>>> getData(
       String categoryName, BuildContext context) {
     final db = Provider.of<FakeDataBase>(context);
-    final categoriesList = db.getProducts(categoryName);
-
+    final categoriesList = db.getProductsOfCategory(categoryName);
     return Future.delayed(const Duration(seconds: 2), () => categoriesList);
   }
 }

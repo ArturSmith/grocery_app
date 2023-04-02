@@ -3,4 +3,6 @@ class Str {
   static const COLOR = "color";
   static const IMAGE = "image";
   static const PRODUCTS = "products";
+  static const PRICE = "price";
+  static const DISCOUNT = "discount";
 }
