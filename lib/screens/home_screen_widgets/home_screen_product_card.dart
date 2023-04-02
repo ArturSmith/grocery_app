@@ -12,10 +12,9 @@ class HomeScreenProductCard extends StatelessWidget {
       required this.price,
       this.discount});
 
-  final String name;
-  final String image;
-  final String price;
-  final String? discount;
+  final String name, image;
+  final int price;
+  final int? discount;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;

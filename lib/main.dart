@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/fakeDataBase.dart';
+import 'package:new_project/models/buy_screen_model.dart';
 import 'package:new_project/models/categories_screen_model.dart';
 import 'package:new_project/models/home_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
@@ -64,6 +65,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => HomeScreenModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BuyScreenModel(),
         ),
       ],
       child:

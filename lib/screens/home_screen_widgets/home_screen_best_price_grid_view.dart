@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../constants/strings.dart';
+import 'package:new_project/objects/product.dart';
 import 'home_screen_product_card.dart';
 
 class HomeScreenBestPriceGridView extends StatelessWidget {
-  const HomeScreenBestPriceGridView({super.key, required this.data});
-  final List<Map<String, dynamic>> data;
+  const HomeScreenBestPriceGridView({super.key, required this.products});
+  final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,13 @@ class HomeScreenBestPriceGridView extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
             return HomeScreenProductCard(
-              name: data[index][Str.NAME],
-              image: data[index][Str.IMAGE],
-              price: data[index][Str.PRICE],
-              discount: data[index][Str.DISCOUNT],
+              name: products[index].name,
+              image: products[index].image,
+              price: products[index].price,
+              discount: products[index].discount,
             );
           },
-          childCount: data.length,
+          childCount: products.length,
         ),
       ),
     );

@@ -88,10 +88,11 @@ class Body extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemCount: data.length,
           itemBuilder: (BuildContext context, int index) {
             return ProductCard(
-              sale: data[index][Str.DISCOUNT],
+              discount: data[index][Str.DISCOUNT],
               price: data[index][Str.PRICE],
               image: data[index][Str.IMAGE],
               name: data[index][Str.NAME],

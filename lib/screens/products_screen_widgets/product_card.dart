@@ -9,11 +9,10 @@ class ProductCard extends StatelessWidget {
       required this.image,
       required this.name,
       required this.price,
-      this.sale});
-  final String image;
-  final String name;
-  final String price;
-  final String? sale;
+      this.discount});
+  final String name, image;
+  final int price;
+  final int? discount;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    sale != null ? 'Discount - $sale%' : "",
+                    discount != null ? 'Discount - $discount%' : "",
                     style: const TextStyle(
                       color: Colors.red,
                       fontSize: 15,
