@@ -167,9 +167,11 @@ class FakeDataBase extends ChangeNotifier {
     List<Map<String, dynamic>> list = [];
     for (var element in _allCategories) {
       final map = {
+        Str.ID: element[Str.ID],
         Str.NAME: element[Str.NAME],
         Str.COLOR: element[Str.COLOR],
-        Str.IMAGE: element[Str.IMAGE]
+        Str.IMAGE: element[Str.IMAGE],
+        Str.PRODUCTS: element[Str.PRODUCTS]
       };
       list.add(map);
     }

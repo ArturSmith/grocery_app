@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
@@ -7,13 +8,21 @@ import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
+
+  CategoriesScreenModel readModel(BuildContext context) {
+    return context.read<CategoriesScreenModel>();
+  }
+
+  CategoriesScreenModel watchModel(BuildContext context) {
+    return context.watch<CategoriesScreenModel>();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<CategoriesScreenModel>(context);
+    watchModel(context).getData(context);
     return FutureBuilder(
-      future: model.getData(context),
-      builder: (BuildContext context,
-          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+      future: readModel(context).categories,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
         Widget body;
         if (snapshot.hasData) {
           body = CategoriesScreenBody(data: snapshot.data);

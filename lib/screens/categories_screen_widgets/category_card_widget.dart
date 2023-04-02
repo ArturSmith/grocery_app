@@ -9,8 +9,9 @@ class CategoryCardWidget extends StatefulWidget {
       {super.key,
       required this.categoryName,
       required this.color,
-      required this.image});
-  final String categoryName, image;
+      required this.image,
+      required this.id});
+  final String categoryName, image, id;
   final Color color;
 
   @override

@@ -10,11 +10,8 @@ import '../../models/products_screen_model.dart';
 import 'moon_over_info.dart';
 
 class ProductsScreen extends StatelessWidget {
-  ProductsScreen({super.key, required this.category});
+  const ProductsScreen({super.key, required this.category});
   final String category;
-
-  bool isDark = false;
-
   Future<List<Map<String, dynamic>>> getData(BuildContext context) {
     final model = Provider.of<ProductScreenModel>(context);
     return model.getData(category, context);
@@ -23,7 +20,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);
-    isDark = provider.getDarkTheme;
+    bool isDark = provider.getDarkTheme;
     return Scaffold(
       appBar: AppBar(
         actions: [

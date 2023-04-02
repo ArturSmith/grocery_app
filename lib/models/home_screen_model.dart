@@ -6,10 +6,13 @@ import 'package:provider/provider.dart';
 import '../constants/strings.dart';
 
 class HomeScreenModel extends ChangeNotifier {
-  Future<List<Product>> getProductsWithDiscount(BuildContext context) {
+  late Future<List<Product>> products;
+
+  void getProductsWithDiscount(BuildContext context) {
     final db = Provider.of<FakeDataBase>(context);
     final productsJson = db.getAllProductsWithDiscount();
-    List<Product> products = [];
+
+    List<Product> prods = [];
     for (var element in productsJson) {
       final product = Product(
           element[Str.NAME],
@@ -18,8 +21,9 @@ class HomeScreenModel extends ChangeNotifier {
           element[Str.PRICE],
           element[Str.PRODUCT_COUNT],
           element[Str.DISCOUNT]);
-      products.add(product);
+      prods.add(product);
     }
-    return Future.delayed(const Duration(milliseconds: 600), (() => products));
+
+    products = Future.delayed(const Duration(milliseconds: 600), (() => prods));
   }
 }
