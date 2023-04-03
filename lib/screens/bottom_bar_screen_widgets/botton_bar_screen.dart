@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
@@ -25,7 +24,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
 
   final List<Map<String, dynamic>> _pages = [
     {"page": const HomeScreen(), "title": "Home"},
-    {"page": CategoriesScreen(), "title": "Categories"},
+    {"page": const CategoriesScreen(), "title": "Categories"},
     {"page": const BuyScreen(), "title": "Order"},
     {"page": const UserScreen(), "title": "User settings"}
   ];

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/objects/product.dart';
+import 'package:new_project/entitis/product.dart';
 import 'home_screen_product_card.dart';
 
 class HomeScreenBestPriceGridView extends StatelessWidget {

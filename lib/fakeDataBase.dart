@@ -1,12 +1,21 @@
-import 'package:flutter/material.dart';
 import 'constants/strings.dart';
 
-class FakeDataBase extends ChangeNotifier {
-  final _allCategories = [
+class FakeDataBase {
+  String id;
+  FakeDataBase.withId(this.id);
+  static FakeDataBase instance = FakeDataBase.withId('');
+
+  factory FakeDataBase(String id) {
+    if (instance.id == '') {
+      instance = FakeDataBase.withId(id);
+    }
+    return instance;
+  }
+
+  final List<Map<String, dynamic>>  _allCategories = [
     {
       Str.ID: "VegetablesID",
       Str.NAME: "Vegetables",
-      Str.COLOR: Colors.green,
       Str.IMAGE: "lib/assets/images/pumpkin.svg",
       Str.PRODUCTS: [
         {
@@ -30,7 +39,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "FruitsID",
       Str.NAME: "Fruits",
-      Str.COLOR: Colors.red,
       Str.IMAGE: "lib/assets/images/fruits.svg",
       Str.PRODUCTS: [
         {
@@ -46,7 +54,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "DrinksID",
       Str.NAME: "Drinks",
-      Str.COLOR: Colors.yellow,
       Str.IMAGE: "lib/assets/images/drink.svg",
       Str.PRODUCTS: [
         {
@@ -62,7 +69,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "AlcoholID",
       Str.NAME: "Alcohol",
-      Str.COLOR: Colors.purple,
       Str.IMAGE: "lib/assets/images/cocktail.svg",
       Str.PRODUCTS: [
         {
@@ -78,7 +84,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "FishID",
       Str.NAME: "Fish",
-      Str.COLOR: Colors.blue,
       Str.IMAGE: "lib/assets/images/fish.svg",
       Str.PRODUCTS: [
         {
@@ -94,7 +99,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "CakesID",
       Str.NAME: "Cakes",
-      Str.COLOR: Colors.cyan,
       Str.IMAGE: "lib/assets/images/cake.svg",
       Str.PRODUCTS: [
         {
@@ -109,7 +113,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "BakeryID",
       Str.NAME: "Bakery",
-      Str.COLOR: Colors.orange,
       Str.IMAGE: "lib/assets/images/dripper.svg",
       Str.PRODUCTS: [
         {
@@ -125,7 +128,6 @@ class FakeDataBase extends ChangeNotifier {
     {
       Str.ID: "CoffeeID",
       Str.NAME: "Coffee",
-      Str.COLOR: Colors.brown,
       Str.IMAGE: "lib/assets/images/coffee.svg",
       Str.PRODUCTS: [
         {
@@ -139,6 +141,8 @@ class FakeDataBase extends ChangeNotifier {
       ]
     },
   ];
+
+  get allCategoriesAndProducts => _allCategories;
 
   List<Map<String, dynamic>> getAllProducts() {
     final List<Map<String, dynamic>> allProducts = [];
@@ -163,29 +167,27 @@ class FakeDataBase extends ChangeNotifier {
     return allProductsWithDiscount;
   }
 
-  List<Map<String, dynamic>> getCategoriesInfo() {
+  List<Map<String, dynamic>> getAllCategories() {
     List<Map<String, dynamic>> list = [];
     for (var element in _allCategories) {
       final map = {
         Str.ID: element[Str.ID],
         Str.NAME: element[Str.NAME],
-        Str.COLOR: element[Str.COLOR],
         Str.IMAGE: element[Str.IMAGE],
-        Str.PRODUCTS: element[Str.PRODUCTS]
       };
       list.add(map);
     }
     return list;
   }
 
-  List<Map<String, dynamic>> getProductsOfCategory(String name) {
-    List<Map<String, dynamic>> list = [];
+  List<Map<String, dynamic>> getProductsOfCategory(String id) {
+    List<Map<String, dynamic>> products = [];
     for (Map<String, dynamic> element in _allCategories) {
-      if (element[Str.NAME] == name) {
-        list = element[Str.PRODUCTS];
+      if (element[Str.ID] == id) {
+        products = element[Str.PRODUCTS];
         break;
       }
     }
-    return list;
+    return products;
   }
 }

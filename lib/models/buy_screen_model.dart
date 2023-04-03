@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../objects/product.dart';
+import '../entitis/product.dart';
 
 class BuyScreenModel extends ChangeNotifier {
   List<dynamic> products = [];
@@ -12,7 +12,7 @@ class BuyScreenModel extends ChangeNotifier {
   }
 
   removeproduct(String id) {
-    products.removeWhere((element) => element.id == id);
+    products.removeWhere((element) => element.categoryId == id);
     notifyListeners();
   }
 

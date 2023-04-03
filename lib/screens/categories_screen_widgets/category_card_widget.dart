@@ -3,16 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 class CategoryCardWidget extends StatefulWidget {
   const CategoryCardWidget(
       {super.key,
       required this.categoryName,
-      required this.color,
       required this.image,
       required this.id});
   final String categoryName, image, id;
-  final Color color;
 
   @override
   State<CategoryCardWidget> createState() => _CategoryCardWidgetState();
@@ -47,7 +46,7 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget>
   Widget build(BuildContext context) {
     final _isDarkTheme = Provider.of<DarkThemeProvider>(context).getDarkTheme;
     final size = MediaQuery.of(context).size.width;
-
+    final randomColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt());
     return ScaleTransition(
       scale: _animation,
       child: Stack(
@@ -60,7 +59,7 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget>
                 PageRouteBuilder(
                   transitionDuration: const Duration(milliseconds: 400),
                   pageBuilder: ((_, __, ___) =>
-                      ProductsScreen(category: widget.categoryName)),
+                      ProductsScreen(categoryId: widget.id)),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) =>
                           FadeTransition(opacity: animation, child: child),
@@ -73,12 +72,12 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget>
               decoration: BoxDecoration(
                 color: _isDarkTheme
                     ? Colors.white.withOpacity(0.8)
-                    : widget.color.withOpacity(0.1),
+                    : randomColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                     color: _isDarkTheme
                         ? Colors.transparent
-                        : widget.color.withOpacity(0.4),
+                        : randomColor.withOpacity(0.4),
                     width: 2),
               ),
               child: SvgPicture.asset(

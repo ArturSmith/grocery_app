@@ -10,11 +10,12 @@ import '../../models/products_screen_model.dart';
 import 'moon_over_info.dart';
 
 class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key, required this.category});
-  final String category;
+  const ProductsScreen({super.key, required this.categoryId});
+  final String categoryId;
+
   Future<List<Map<String, dynamic>>> getData(BuildContext context) {
     final model = Provider.of<ProductScreenModel>(context);
-    return model.getData(category, context);
+    return model.getData(categoryId, context);
   }
 
   @override

@@ -27,7 +27,7 @@ class BuyScreen extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return ProductOrderCard(
                   name: products[index].name,
-                  id: products[index].id,
+                  id: products[index].categoryId,
                   price: products[index].price,
                   discount: products[index].discount,
                   count: products[index].count,

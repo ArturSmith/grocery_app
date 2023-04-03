@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:new_project/fakeDataBase.dart';
-import 'package:new_project/objects/product.dart';
-import 'package:provider/provider.dart';
+import 'package:new_project/entitis/product.dart';
 
 import '../constants/strings.dart';
 
@@ -9,8 +8,8 @@ class HomeScreenModel extends ChangeNotifier {
   late Future<List<Product>> products;
 
   void getProductsWithDiscount(BuildContext context) {
-    final db = Provider.of<FakeDataBase>(context);
-    final productsJson = db.getAllProductsWithDiscount();
+    final dbinstance = FakeDataBase(Str.DB_INSTANCE);
+    final productsJson = dbinstance.getAllProductsWithDiscount();
 
     List<Product> prods = [];
     for (var element in productsJson) {

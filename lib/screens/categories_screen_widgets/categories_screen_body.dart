@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/objects/category.dart';
+import 'package:new_project/entitis/category.dart';
 import 'package:new_project/screens/categories_screen_widgets/category_card_widget.dart';
 
 class CategoriesScreenBody extends StatelessWidget {
@@ -21,7 +21,6 @@ class CategoriesScreenBody extends StatelessWidget {
             return CategoryCardWidget(
                 id: data[index].id,
                 categoryName: data[index].name,
-                color: data[index].color,
                 image: data[index].image);
           }),
     );

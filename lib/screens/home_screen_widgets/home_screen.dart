@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/models/home_screen_model.dart';
-import 'package:new_project/objects/product.dart';
+import 'package:new_project/entitis/product.dart';
 import 'package:provider/provider.dart';
 import '../../constants/theme_style.dart';
 import '../../widgets/best_price_string.dart';
