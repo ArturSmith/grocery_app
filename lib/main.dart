@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_project/constants/theme_style.dart';
-import 'package:new_project/fakeDataBase.dart';
 import 'package:new_project/models/buy_screen_model.dart';
 import 'package:new_project/models/categories_screen_model.dart';
 import 'package:new_project/models/home_screen_model.dart';
@@ -12,7 +11,9 @@ import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.
 import 'package:provider/provider.dart';
 import 'constants/routes.dart';
 import 'firebase_options.dart';
+import 'models/main_model.dart';
 import 'models/products_screen_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ void main() async {
     systemNavigationBarColor: Colors.black,
     statusBarColor: Colors.black,
   ));
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
@@ -37,6 +39,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeProvider = DarkThemeProvider();
+  MainModel mainModel = MainModel();
 
   void getCurrentTheme() async {
     themeProvider.setDarkTheme =
@@ -61,13 +64,13 @@ class _MyAppState extends State<MyApp> {
           create: (_) => ProductScreenModel(),
         ),
         ChangeNotifierProvider(
-          create: (_) => FakeDataBase(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => HomeScreenModel(),
         ),
         ChangeNotifierProvider(
           create: (_) => BuyScreenModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MainModel(),
         ),
       ],
       child:
