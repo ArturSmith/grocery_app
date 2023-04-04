@@ -1,8 +1,12 @@
+import 'package:new_project/constants/strings.dart';
+import 'package:new_project/screens/authenticate/wrapper.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
-import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
+import 'package:new_project/screens/firs_screen.dart/first_screen.dart';
 
 class Routes {
   static final routes = {
-    "/Home": (context) => const BottomBarScreen(),
+    Str.HOME_SCREEN: (context) => const BottomBarScreen(),
+    Str.WRAPPER: (context) => const Wrapper(),
+    Str.FIRST_SCREEN: (context) => const FirstScreen()
   };
 }

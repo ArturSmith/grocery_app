@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/buy_screen_widgets/buy_screen.dart';
+import 'package:new_project/screens/bascet_screen_widgets/bascet_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
 import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen.dart';
@@ -25,7 +25,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
   final List<Map<String, dynamic>> _pages = [
     {"page": const HomeScreen(), "title": "Home"},
     {"page": const CategoriesScreen(), "title": "Categories"},
-    {"page": const BuyScreen(), "title": "Order"},
+    {"page": const BascetScreen(), "title": "Order"},
     {"page": const UserScreen(), "title": "User settings"}
   ];
 
@@ -41,8 +41,9 @@ class _BottomBarScreenState extends State<BottomBarScreen>
 
   @override
   void dispose() {
-    super.dispose();
     _animationController.dispose();
+
+    super.dispose();
   }
 
   void _selectScreen(int index) {
@@ -69,10 +70,10 @@ class _BottomBarScreenState extends State<BottomBarScreen>
               child: IconButton(
                   onPressed: (() {}),
                   icon: Icon(Icons.favorite,
-                      color: ThemeStyles.setColor(context, true))),
+                      color: ThemeStyles.setColor(context, false))),
             )
           ],
-          backgroundColor: ThemeStyles.setColor(context, false),
+          backgroundColor: ThemeStyles.setColor(context, true),
           title: Text(
             _pages[_selectedIndex]["title"],
             style: MyTextDecoration.titleTextStyle(context),
@@ -81,7 +82,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
         ),
         floatingActionButton: isDark
             ? MoonButton(animation: _animation)
-            : SunButton(animation: _animation),
+            : SunButton(animation: _animation, size: 40),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         extendBody: true,
         body: _pages[_selectedIndex]["page"],

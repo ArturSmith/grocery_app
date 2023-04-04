@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:new_project/constants/app_colors.dart';
+import 'package:new_project/constants/theme_style.dart';
 import 'package:provider/provider.dart';
 import '../../providers/dark_theme_provider.dart';
 
 class BottomNavBar extends StatelessWidget {
   BottomNavBar(
       {super.key, required this.selectScreen, required this.selectedIndex});
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   final Function(int)? selectScreen;
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,7 @@ class BottomNavBar extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(seconds: 2),
           child: BottomNavigationBar(
-            backgroundColor:
-                _dark ? Colors.white : AppColors.darkThemeBacgroundColor,
+            backgroundColor: ThemeStyles.setColor(context, true),
             unselectedItemColor: _dark ? Colors.grey : Colors.white,
             selectedItemColor:
                 _dark ? AppColors.darkThemeBacgroundColor : Colors.amber,

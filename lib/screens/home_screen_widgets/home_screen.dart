@@ -14,20 +14,15 @@ class HomeScreen extends StatelessWidget {
     return context.read<HomeScreenModel>();
   }
 
-  HomeScreenModel watchModel(BuildContext context) {
-    return context.watch<HomeScreenModel>();
-  }
-
   @override
   Widget build(BuildContext context) {
-    watchModel(context).getProductsWithDiscount(context);
     return FutureBuilder(
-        future: readModel(context).products,
+        future: readModel(context).getAllProdsWithDiscount(),
         builder: ((context, AsyncSnapshot<List<Product>> snapshot) {
           Widget body = const SizedBox.shrink();
           if (snapshot.hasData) {
             final list = snapshot.data as List<Product>;
-            body = Body(list: list);
+            body = Body(listOfProducts: list);
           } else {
             body = Center(
               child: CircularProgressIndicator(
@@ -44,8 +39,8 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  const Body({super.key, required this.list});
-  final List<Product> list;
+  const Body({super.key, required this.listOfProducts});
+  final List<Product> listOfProducts;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -56,7 +51,7 @@ class Body extends StatelessWidget {
           text: "BEST PRICE",
           color: Colors.red,
         ),
-        HomeScreenBestPriceGridView(products: list),
+        HomeScreenBestPriceGridView(products: listOfProducts),
         const MovableString(text: 'SEASONAL  PRODUCTS', color: Colors.green)
       ],
     );

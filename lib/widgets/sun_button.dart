@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
-class SunButton extends StatefulWidget {
-  const SunButton({super.key, this.onTap, required this.animation});
+class SunButton extends StatelessWidget {
+  const SunButton(
+      {super.key, this.onTap, required this.animation, required this.size});
   final Function? onTap;
   final Animation<double> animation;
-
-  @override
-  State<SunButton> createState() => _SunButtonState();
-}
-
-class _SunButtonState extends State<SunButton> with TickerProviderStateMixin {
-  final double size = 40;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
-      turns: widget.animation,
+      turns: animation,
       child: GestureDetector(
-        onTap: () => widget.onTap,
+        onTap: () => onTap,
         child: Hero(
           tag: 'sunButton',
           child: Stack(children: [

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:new_project/constants/strings.dart';
-import 'package:new_project/fakeDataBase.dart';
+import 'package:new_project/api/api.dart';
+import 'package:new_project/entitis/product.dart';
 
 class ProductScreenModel extends ChangeNotifier {
-  Future<List<Map<String, dynamic>>> getData(
-      String categoryId, BuildContext context) {
-    final dbInstance = FakeDataBase(Str.DB_INSTANCE);
-    final categoriesList = dbInstance.getProductsOfCategory(categoryId);
-    return Future.delayed(const Duration(seconds: 2), () => categoriesList);
+  final api = Api();
+
+  Future<List<Product>> getProductsOfCategory(String id) {
+    final products = api.getProductsOfCategory(id);
+
+    return Future.delayed(const Duration(milliseconds: 600), (() => products));
   }
 }

@@ -23,6 +23,8 @@ class HomeScreenBestPriceGridView extends StatelessWidget {
               image: products[index].image,
               price: products[index].price,
               discount: products[index].discount,
+              id: products[index].id,
+              count: products[index].count,
             );
           },
           childCount: products.length,

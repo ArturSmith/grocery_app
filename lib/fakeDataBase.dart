@@ -12,7 +12,7 @@ class FakeDataBase {
     return instance;
   }
 
-  final List<Map<String, dynamic>>  _allCategories = [
+  final List<Map<String, dynamic>> _allCategories = [
     {
       Str.ID: "VegetablesID",
       Str.NAME: "Vegetables",
@@ -85,60 +85,25 @@ class FakeDataBase {
       Str.ID: "FishID",
       Str.NAME: "Fish",
       Str.IMAGE: "lib/assets/images/fish.svg",
-      Str.PRODUCTS: [
-        {
-          Str.ID: "SalmonID",
-          Str.IMAGE: "lib/assets/images/fish.svg",
-          Str.NAME: "Salmon",
-          Str.PRICE: 23,
-          Str.DISCOUNT: 15,
-          Str.PRODUCT_COUNT: 10
-        },
-      ]
+      Str.PRODUCTS: []
     },
     {
       Str.ID: "CakesID",
       Str.NAME: "Cakes",
       Str.IMAGE: "lib/assets/images/cake.svg",
-      Str.PRODUCTS: [
-        {
-          Str.ID: "BrownyID",
-          Str.IMAGE: "lib/assets/images/cake.svg",
-          Str.NAME: "Browny",
-          Str.PRICE: 23,
-          Str.PRODUCT_COUNT: 5
-        },
-      ]
+      Str.PRODUCTS: []
     },
     {
       Str.ID: "BakeryID",
       Str.NAME: "Bakery",
       Str.IMAGE: "lib/assets/images/dripper.svg",
-      Str.PRODUCTS: [
-        {
-          Str.ID: "CroissantID",
-          Str.IMAGE: "lib/assets/images/dripper.svg",
-          Str.NAME: "Croissant",
-          Str.PRICE: 23,
-          Str.DISCOUNT: 60,
-          Str.PRODUCT_COUNT: 14
-        },
-      ]
+      Str.PRODUCTS: []
     },
     {
       Str.ID: "CoffeeID",
       Str.NAME: "Coffee",
       Str.IMAGE: "lib/assets/images/coffee.svg",
-      Str.PRODUCTS: [
-        {
-          Str.ID: "CappuccinoID",
-          Str.IMAGE: "lib/assets/images/coffee.svg",
-          Str.NAME: "Cappuccino",
-          Str.PRICE: 23,
-          Str.DISCOUNT: 60,
-          Str.PRODUCT_COUNT: 3
-        },
-      ]
+      Str.PRODUCTS: []
     },
   ];
 
@@ -148,7 +113,7 @@ class FakeDataBase {
     final List<Map<String, dynamic>> allProducts = [];
 
     for (var category in _allCategories) {
-      final productsList = category[Str.PRODUCTS] as List<Map<String, dynamic>>;
+      final productsList = category[Str.PRODUCTS];
       for (var product in productsList) {
         allProducts.add(product);
       }
@@ -174,6 +139,7 @@ class FakeDataBase {
         Str.ID: element[Str.ID],
         Str.NAME: element[Str.NAME],
         Str.IMAGE: element[Str.IMAGE],
+        Str.PRODUCTS: element[Str.PRODUCTS]
       };
       list.add(map);
     }

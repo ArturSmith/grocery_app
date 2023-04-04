@@ -1,28 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:new_project/fakeDataBase.dart';
+import 'package:new_project/api/api.dart';
 import 'package:new_project/entitis/product.dart';
 
-import '../constants/strings.dart';
-
 class HomeScreenModel extends ChangeNotifier {
-  late Future<List<Product>> products;
+  final api = Api();
 
-  void getProductsWithDiscount(BuildContext context) {
-    final dbinstance = FakeDataBase(Str.DB_INSTANCE);
-    final productsJson = dbinstance.getAllProductsWithDiscount();
-
-    List<Product> prods = [];
-    for (var element in productsJson) {
-      final product = Product(
-          element[Str.NAME],
-          element[Str.IMAGE],
-          element[Str.ID],
-          element[Str.PRICE],
-          element[Str.PRODUCT_COUNT],
-          element[Str.DISCOUNT]);
-      prods.add(product);
-    }
-
-    products = Future.delayed(const Duration(milliseconds: 600), (() => prods));
+  Future<List<Product>> getAllProdsWithDiscount() {
+    return Future.delayed(
+        const Duration(seconds: 3), (() => api.getAllProductsWithDiscount()));
   }
 }

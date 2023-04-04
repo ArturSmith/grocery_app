@@ -10,6 +10,6 @@ class MyTextDecoration {
     return TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.w700,
-        color: isDark ? Colors.white : AppColors.darkThemeBacgroundColor);
+        color: !isDark ? Colors.white : AppColors.darkThemeBacgroundColor);
   }
 }

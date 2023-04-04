@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:new_project/entitis/product.dart';
+import 'package:new_project/models/bascet_screen_model.dart';
+import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import 'dart:math' as math;
 
 class HomeScreenProductCard extends StatelessWidget {
   const HomeScreenProductCard(
@@ -10,21 +13,38 @@ class HomeScreenProductCard extends StatelessWidget {
       required this.name,
       required this.image,
       required this.price,
-      this.discount});
+      this.discount,
+      this.count,
+      required this.id});
 
-  final String name, image;
+  final String name, image, id;
   final int price;
-  final int? discount;
+  final int? discount, count;
+
+  BascetScreenModel readModel(BuildContext context) {
+    return context.read<BascetScreenModel>();
+  }
+
+  BascetScreenModel watchModel(BuildContext context) {
+    return context.watch<BascetScreenModel>();
+  }
+
+  onTap(BuildContext context) {
+    readModel(context).addProduct(name, id, image, price, discount);
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
+    final randomColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt());
+
     return Card(
       elevation: 10,
       child: Container(
         width: screenSize,
         height: screenSize * 0.3,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: randomColor.withOpacity(0.1),
             border: Border.all(color: AppColors.darkThemeBacgroundColor),
             borderRadius: BorderRadius.circular(10)),
         child: Column(
@@ -38,7 +58,12 @@ class HomeScreenProductCard extends StatelessWidget {
                       onPressed: (() {}), icon: const Icon(IconlyLight.heart)),
                   const SizedBox(height: 15),
                   IconButton(
-                      onPressed: (() {}), icon: const Icon(IconlyLight.buy)),
+                      onPressed: (() {
+                        onTap(context);
+                      }),
+                      icon: const Icon(
+                        IconlyLight.buy,
+                      )),
                 ],
               ),
             ),

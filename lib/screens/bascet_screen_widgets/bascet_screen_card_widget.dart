@@ -4,25 +4,18 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../constants/app_colors.dart';
 
-class ProductOrderCard extends StatelessWidget {
-  const ProductOrderCard(
+class BascetScreenCardWidget extends StatelessWidget {
+  BascetScreenCardWidget(
       {super.key,
       required this.name,
+      required this.image,
       required this.id,
       required this.price,
-      this.discount,
-      required this.image,
-      required this.count});
+      required this.quantity});
 
-  final String name, id, image;
-  final int count, price;
-  final int? discount;
-
-  getTotalPrice() {
-    final totPri = count * price;
-    final sale = discount != null ? discount! / 100 : 1;
-    return totPri * sale;
-  }
+  final String name, image, id;
+  int price, quantity;
+  int? discount;
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +64,6 @@ class ProductOrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Count - $count',
-                    style: const TextStyle(
-                      color: AppColors.darkThemeBacgroundColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Text(
                     'Price - $price',
                     style: const TextStyle(
                       color: AppColors.darkThemeBacgroundColor,
@@ -95,14 +80,6 @@ class ProductOrderCard extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Total price - ${getTotalPrice()}',
-                    style: const TextStyle(
-                      color: AppColors.darkThemeBacgroundColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],

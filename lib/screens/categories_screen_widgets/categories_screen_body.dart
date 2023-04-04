@@ -3,8 +3,8 @@ import 'package:new_project/entitis/category.dart';
 import 'package:new_project/screens/categories_screen_widgets/category_card_widget.dart';
 
 class CategoriesScreenBody extends StatelessWidget {
-  const CategoriesScreenBody({super.key, required this.data});
-  final List<Category> data;
+  const CategoriesScreenBody({super.key, required this.categories});
+  final List<Category> categories;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,14 +14,16 @@ class CategoriesScreenBody extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: 240 / 240,
               crossAxisSpacing: 10,
-              mainAxisSpacing: 5,
+              mainAxisSpacing: 0,
               crossAxisCount: 2),
-          itemCount: data.length,
+          itemCount: categories.length,
           itemBuilder: (BuildContext context, int index) {
             return CategoryCardWidget(
-                id: data[index].id,
-                categoryName: data[index].name,
-                image: data[index].image);
+              id: categories[index].id,
+              categoryName: categories[index].name,
+              image: categories[index].image,
+              products: categories[index].products,
+            );
           }),
     );
   }

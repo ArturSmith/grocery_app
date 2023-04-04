@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_project/providers/dark_theme_provider.dart';
+import 'package:new_project/constants/consts.dart';
+import 'package:new_project/entitis/product.dart';
 import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
-import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
 class CategoryCardWidget extends StatefulWidget {
@@ -10,8 +10,10 @@ class CategoryCardWidget extends StatefulWidget {
       {super.key,
       required this.categoryName,
       required this.image,
-      required this.id});
+      required this.id,
+      required this.products});
   final String categoryName, image, id;
+  final List<Product> products;
 
   @override
   State<CategoryCardWidget> createState() => _CategoryCardWidgetState();
@@ -42,69 +44,74 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget>
     super.dispose();
   }
 
+  void onTap() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: ((_, __, ___) => ProductsScreen(parentId: widget.id)),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(opacity: animation, child: child),
+      ),
+    );
+  }
+
+  final randomColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt());
+
   @override
   Widget build(BuildContext context) {
-    final _isDarkTheme = Provider.of<DarkThemeProvider>(context).getDarkTheme;
-    final size = MediaQuery.of(context).size.width;
-    final randomColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt());
-    return ScaleTransition(
-      scale: _animation,
-      child: Stack(
-        children: [
-          InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: (() {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionDuration: const Duration(milliseconds: 400),
-                  pageBuilder: ((_, __, ___) =>
-                      ProductsScreen(categoryId: widget.id)),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(opacity: animation, child: child),
-                ),
-              );
-            }),
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 13),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: _isDarkTheme
-                    ? Colors.white.withOpacity(0.8)
-                    : randomColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                    color: _isDarkTheme
-                        ? Colors.transparent
-                        : randomColor.withOpacity(0.4),
-                    width: 2),
-              ),
-              child: SvgPicture.asset(
-                widget.image,
-                width: size * 0.4,
-                height: size * 0.4,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
+    final width = Consts.screenSize(context).width;
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: ScaleTransition(
+        scale: _animation,
+        child: Stack(
+          children: [
+            InkWell(
+              borderRadius: BorderRadius.circular(20),
+              onTap: (() {
+                onTap();
+              }),
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 13),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Consts.isDark(context)
+                      ? Colors.white.withOpacity(0.8)
+                      : randomColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black)),
-              child: Text(
-                widget.categoryName,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 20,
-                    color: Colors.black),
+                  border: Border.all(
+                      color: Consts.isDark(context)
+                          ? Colors.transparent
+                          : randomColor.withOpacity(0.4),
+                      width: 2),
+                ),
+                child: SvgPicture.asset(
+                  widget.image,
+                  width: width * 0.35,
+                  height: width * 0.35,
+                ),
               ),
             ),
-          )
-        ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black)),
+                child: Text(
+                  widget.categoryName,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20,
+                      color: Colors.black),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

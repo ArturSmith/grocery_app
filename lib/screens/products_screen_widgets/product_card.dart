@@ -9,10 +9,12 @@ class ProductCard extends StatelessWidget {
       required this.image,
       required this.name,
       required this.price,
-      this.discount});
-  final String name, image;
+      this.discount,
+      required this.id,
+      this.count});
+  final String name, image, id;
   final int price;
-  final int? discount;
+  final int? discount, count;
 
   @override
   Widget build(BuildContext context) {

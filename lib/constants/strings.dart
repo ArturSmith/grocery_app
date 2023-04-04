@@ -15,4 +15,10 @@ class Str {
   static const ALL_CATEGORIES = "all_categories";
   static const ALL_PRODUCTS = "all_products";
   static const ALL_PRODUCTS_WITH_DISCOUNT = "all_products_with_discount";
+
+  // Screens
+
+  static const HOME_SCREEN = "/HomeScreen";
+  static const WRAPPER = "/Wrapper";
+  static const FIRST_SCREEN = "/FirstScreen";
 }
