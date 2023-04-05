@@ -6,7 +6,7 @@ class ProductScreenModel extends ChangeNotifier {
   final api = Api();
 
   Future<List<Product>> getProductsOfCategory(String id) {
-    final products = api.getProductsOfCategory(id);
+    final products = api.getAllProductsOfCategory(id);
 
     return Future.delayed(const Duration(milliseconds: 600), (() => products));
   }

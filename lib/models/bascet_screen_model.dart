@@ -9,7 +9,7 @@ class BascetScreenModel extends ChangeNotifier {
   List<BascetScreenCardWidget> cards = [];
 
   addProduct(String name, id, image, int price, int? discount) {
-    final product = Product(name, image, id, price, discount, null);
+    final product = Product(false, name, image, id, price, discount, null);
     _products.add(product);
 
     final card = BascetScreenCardWidget(
