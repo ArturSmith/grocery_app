@@ -1,7 +1,6 @@
-import 'package:new_project/constants/strings.dart';
+import 'package:dio/dio.dart';
 import 'package:new_project/entitis/category.dart';
 import 'package:new_project/entitis/product.dart';
-import 'package:new_project/fakeDataBase.dart';
 
 class Api {
   final String id;
@@ -15,69 +14,63 @@ class Api {
     return instance;
   }
 
-  final dbInstance = FakeDataBase(Str.DB_INSTANCE);
-
-  List<Map<String, dynamic>> getAllCategoriesAndProducts() {
-    final data =
-        dbInstance.allCategoriesAndProducts as List<Map<String, dynamic>>;
-    return data;
+  Future<List<Category>> getAllCategories() async {
+    final Dio dio = Dio();
+    final responce =
+        await dio.get("https://api.npoint.io/bffb2cb101f350e1c127");
+    final List<dynamic> data = responce.data;
+    return data.map((e) => Category.formJson(e)).toList();
   }
 
-  List<Category> getAllCategories() {
-    final allCategoriesJson = dbInstance.getAllCategories();
-    List<Category> categories = [];
+  Future<List<Product>> getAllProducts() async {
+    final allCategories = await getAllCategories();
 
-    for (var category in allCategoriesJson) {
-      final productsJson = category[Str.PRODUCTS];
-      List<Product> products = [];
-      for (var product in productsJson) {
-        final finalProduct = Product(
-            product[Str.NAME],
-            product[Str.IMAGE],
-            product[Str.ID],
-            product[Str.PRICE],
-            product[Str.PRODUCT_COUNT],
-            product[Str.DISCOUNT]);
-        products.add(finalProduct);
-      }
-      final fromJsom = Category(
-          category[Str.NAME], category[Str.ID], category[Str.IMAGE], products);
-      categories.add(fromJsom);
+    List<Product> allProducts = [];
+
+    for (var category in allCategories) {
+      allProducts.addAll(category.products);
     }
 
-    return categories;
+    return allProducts;
   }
 
-  List<Product> getAllProductsWithDiscount() {
-    final allProdsWithDiscount = dbInstance.getAllProductsWithDiscount();
-    List<Product> productsWithDiscount = [];
-
-    for (var product in allProdsWithDiscount) {
-      final finalProduct = Product(
-          product[Str.NAME],
-          product[Str.IMAGE],
-          product[Str.ID],
-          product[Str.PRICE],
-          product[Str.PRODUCT_COUNT],
-          product[Str.DISCOUNT]);
-
-      productsWithDiscount.add(finalProduct);
-    }
-
-    return productsWithDiscount;
-  }
-
-  List<Product> getProductsOfCategory(String id) {
-    final allCategories = getAllCategories();
+  Future<List<Product>> getAllProductsOfCategory(String id) async {
+    final allCategories = await getAllCategories();
 
     List<Product> products = [];
 
     for (var category in allCategories) {
       if (category.id == id) {
-        products = category.products;
+        products.addAll(category.products);
         break;
       }
     }
     return products;
+  }
+
+  Future<List<Product>> getAllProductsWithDiscount() async {
+    final allProducts = getAllProducts();
+
+    List<Product> productsWithDiscount = [];
+
+    for (var product in allProducts as List<Product>) {
+      if (product.discount != 1) {
+        productsWithDiscount.add(product);
+      }
+    }
+    return productsWithDiscount;
+  }
+
+  Future<List<Product>> getAllSeasonalProducts() async {
+    final allProducts = getAllProducts();
+
+    List<Product> productsWithDiscount = [];
+
+    for (var product in allProducts as List<Product>) {
+      if (product.discount != 1) {
+        productsWithDiscount.add(product);
+      }
+    }
+    return productsWithDiscount;
   }
 }
