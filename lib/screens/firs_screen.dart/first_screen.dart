@@ -25,6 +25,7 @@ class _FirstScreenState extends State<FirstScreen>
   int count = 0;
   bool play = true;
   Color color = AppColors.darkThemeBacgroundColor;
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +36,25 @@ class _FirstScreenState extends State<FirstScreen>
           _animationController.repeat();
         }
       });
+    goAhead();
+  }
+
+  goAhead() async {
+    await Future.delayed(const Duration(seconds: 3));
+    _animationController.stop();
+    navigate();
+  }
+
+  navigate() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 500),
+        pageBuilder: ((_, __, ___) => const BottomBarScreen()),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(opacity: animation, child: child),
+      ),
+    );
   }
 
   @override
@@ -48,27 +68,18 @@ class _FirstScreenState extends State<FirstScreen>
     return Scaffold(
       backgroundColor: color,
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const Spacer(flex: 10),
+          const Text(
+            "WELCOME",
+            style: TextStyle(
+                color: Colors.white, fontSize: 50, fontWeight: FontWeight.w900),
+          ),
+          const Spacer(flex: 3),
           SunButton(animation: _animation, size: 100),
-          const SizedBox(height: 70),
-          ElevatedButton(
-              onPressed: (() {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: const Duration(seconds: 2),
-                    pageBuilder: ((_, __, ___) => const BottomBarScreen()),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) =>
-                            FadeTransition(opacity: animation, child: child),
-                  ),
-                );
-              }),
-              child: const Text("Log in"))
-        ],
-      )),
+          const Spacer(flex: 10),
+        ]),
+      ),
     );
   }
 }
