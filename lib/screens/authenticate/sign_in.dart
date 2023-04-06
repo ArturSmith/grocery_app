@@ -19,7 +19,7 @@ class _SignInState extends State<SignIn> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 2,
-        backgroundColor: ThemeStyles.setColor(context, true),
+        backgroundColor: ThemeStyles.setThemeColor(context, true),
         title: Text(
           "Sign in anon",
           style: MyTextDecoration.titleTextStyle(context),
@@ -33,7 +33,8 @@ class _SignInState extends State<SignIn> {
               }),
               child: Text(
                 "Sign in anon",
-                style: TextStyle(color: ThemeStyles.setColor(context, true)),
+                style:
+                    TextStyle(color: ThemeStyles.setThemeColor(context, true)),
               ))),
     );
   }

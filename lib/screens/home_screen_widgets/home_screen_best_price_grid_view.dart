@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/entitis/product.dart';
-import 'home_screen_product_card.dart';
+import '../../widgets/product_card.dart';
 
 class HomeScreenBestPriceGridView extends StatelessWidget {
   const HomeScreenBestPriceGridView({super.key, required this.products});
@@ -18,7 +18,8 @@ class HomeScreenBestPriceGridView extends StatelessWidget {
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            return HomeScreenProductCard(
+            return ProductCard(
+              color: Colors.red,
               name: products[index].name,
               image: products[index].image,
               price: products[index].price,

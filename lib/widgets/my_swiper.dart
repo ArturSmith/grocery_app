@@ -4,13 +4,8 @@ import 'package:flutter/material.dart';
 import '../constants/theme_style.dart';
 
 class MySwiper extends StatelessWidget {
-  MySwiper({super.key});
-
-  final List<String> images = [
-    'lib/assets/shop_pics/pexels-anna-shvets-3962285.jpg',
-    'lib/assets/shop_pics/pexels-erik-scheel-95425.jpg',
-    'lib/assets/shop_pics/pexels-matheus-cenali-2733918.jpg',
-  ];
+  MySwiper({super.key, required this.lisOfImages});
+  final List<String> lisOfImages;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +15,9 @@ class MySwiper extends StatelessWidget {
         width: size,
         height: size * 0.7,
         child: Swiper(
-          itemCount: images.length,
+          itemCount: lisOfImages.length,
           itemBuilder: (context, index) {
-            return Image.asset(images[index], fit: BoxFit.fill);
+            return Image.asset(lisOfImages[index], fit: BoxFit.fill);
           },
           autoplay: true,
           pagination: SwiperPagination(
@@ -30,8 +25,8 @@ class MySwiper extends StatelessWidget {
               builder: DotSwiperPaginationBuilder(
                   size: 10,
                   activeSize: 10,
-                  color: ThemeStyles.setColor(context, false),
-                  activeColor: ThemeStyles.setColor(context, true))),
+                  color: ThemeStyles.setThemeColor(context, false),
+                  activeColor: ThemeStyles.setThemeColor(context, true))),
         ),
       ),
     );

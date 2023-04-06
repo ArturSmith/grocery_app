@@ -13,7 +13,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);
-    final bool _dark = provider.getDarkTheme;
+    final bool _isDark = provider.getDarkTheme;
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -24,13 +24,14 @@ class BottomNavBar extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         notchMargin: 15,
         shape: const CircularNotchedRectangle(),
-        child: AnimatedContainer(
-          duration: const Duration(seconds: 2),
+        child: Container(
+          decoration: const BoxDecoration(gradient: ThemeStyles.gradient),
           child: BottomNavigationBar(
-            backgroundColor: ThemeStyles.setColor(context, true),
-            unselectedItemColor: _dark ? Colors.grey : Colors.white,
+            backgroundColor: _isDark ? Colors.white : Colors.transparent,
+            unselectedItemColor:
+                _isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
             selectedItemColor:
-                _dark ? AppColors.darkThemeBacgroundColor : Colors.amber,
+                _isDark ? AppColors.darkThemeBacgroundColor : Colors.white,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,

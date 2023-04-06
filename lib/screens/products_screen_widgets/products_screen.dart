@@ -4,10 +4,10 @@ import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/models/products_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/products_screen_widgets/product_card.dart';
 import 'package:new_project/screens/products_screen_widgets/sun_over_info.dart';
 import 'package:provider/provider.dart';
 import '../../entitis/product.dart';
+import '../../widgets/product_card.dart';
 import 'moon_over_info.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -16,9 +16,14 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);
-    bool isDark = provider.getDarkTheme;
+    bool _isDark = provider.getDarkTheme;
     return Scaffold(
         appBar: AppBar(
+          flexibleSpace: _isDark
+              ? null
+              : Container(
+                  decoration:
+                      const BoxDecoration(gradient: ThemeStyles.gradient)),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -26,7 +31,7 @@ class ProductsScreen extends StatelessWidget {
                   onPressed: (() {}),
                   icon: Icon(
                     IconlyBold.buy,
-                    color: ThemeStyles.setColor(context, false),
+                    color: ThemeStyles.setThemeColor(context, false),
                   )),
             ),
             Padding(
@@ -35,27 +40,27 @@ class ProductsScreen extends StatelessWidget {
                   onPressed: (() {}),
                   icon: Icon(
                     Icons.favorite,
-                    color: ThemeStyles.setColor(context, false),
+                    color: ThemeStyles.setThemeColor(context, false),
                   )),
             )
           ],
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: ThemeStyles.setColor(context, false),
+              color: ThemeStyles.setThemeColor(context, false),
             ),
             onPressed: (() {
               Navigator.of(context).pop();
             }),
           ),
-          backgroundColor: ThemeStyles.setColor(context, true),
+          backgroundColor: ThemeStyles.setThemeColor(context, true),
           toolbarHeight: 70,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
             ),
           ),
-          title: isDark ? const Moon() : const Sun(),
+          title: _isDark ? const Moon() : const Sun(),
           centerTitle: true,
         ),
         body: Body(parentId: parentId));
@@ -82,7 +87,7 @@ class Body extends StatelessWidget {
               Widget body = const SizedBox.shrink();
               var data = snapshot.data ?? [];
               if (snapshot.hasData) {
-                body = ListView.builder(
+                body = GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data?.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -93,8 +98,14 @@ class Body extends StatelessWidget {
                       name: data[index].name,
                       id: data[index].id,
                       count: data[index].count,
+                      color: Colors.white,
                     );
                   },
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
                 );
               } else if (snapshot.hasError) {
                 body = const Text("We do not have any products now.");

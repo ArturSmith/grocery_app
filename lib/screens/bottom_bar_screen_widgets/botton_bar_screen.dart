@@ -64,16 +64,23 @@ class _BottomBarScreenState extends State<BottomBarScreen>
     final bool isDark = provider.getDarkTheme;
     return Scaffold(
         appBar: AppBar(
+          elevation: 10,
+          flexibleSpace: isDark
+              ? null
+              : Container(
+                  decoration:
+                      const BoxDecoration(gradient: ThemeStyles.gradient),
+                ),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                   onPressed: (() {}),
                   icon: Icon(Icons.favorite,
-                      color: ThemeStyles.setColor(context, false))),
+                      color: ThemeStyles.setThemeColor(context, false))),
             )
           ],
-          backgroundColor: ThemeStyles.setColor(context, true),
+          backgroundColor: ThemeStyles.setThemeColor(context, true),
           title: Text(
             _pages[_selectedIndex]["title"],
             style: MyTextDecoration.titleTextStyle(context),

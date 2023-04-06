@@ -87,10 +87,10 @@ class _UserScreenState extends State<UserScreen> {
         ),
         MyListTile(
           onTap: () {
-            _showLogOutDialog();
+            // _showLogOutDialog();
           },
           leading: Icons.logout,
-          title: "Logout",
+          title: "Login",
           trailing: Icons.keyboard_arrow_right_outlined,
         ),
       ],

@@ -10,7 +10,7 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
   CategoriesScreenModel readModel(BuildContext context) {
-    return context.watch<CategoriesScreenModel>();
+    return context.read<CategoriesScreenModel>();
   }
 
   @override
@@ -30,7 +30,7 @@ class CategoriesScreen extends StatelessWidget {
         } else {
           body = Center(
               child: CircularProgressIndicator(
-            color: ThemeStyles.setColor(context, true),
+            color: ThemeStyles.setThemeColor(context, true),
           ));
         }
         return body;

@@ -17,16 +17,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: readModel(context).getAllProdsWithDiscount(),
+        future: readModel(context).getProdsWithDiscount(),
         builder: ((context, AsyncSnapshot<List<Product>> snapshot) {
           Widget body = const SizedBox.shrink();
           if (snapshot.hasData) {
             final list = snapshot.data as List<Product>;
-            body = Body(listOfProducts: list);
+            body = _Body(listOfProducts: list);
           } else {
             body = Center(
               child: CircularProgressIndicator(
-                color: ThemeStyles.setColor(
+                color: ThemeStyles.setThemeColor(
                   context,
                   true,
                 ),
@@ -38,15 +38,20 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class Body extends StatelessWidget {
-  const Body({super.key, required this.listOfProducts});
+class _Body extends StatelessWidget {
+  _Body({super.key, required this.listOfProducts});
   final List<Product> listOfProducts;
+  final List<String> images = [
+    'lib/assets/shop_pics/pexels-anna-shvets-3962285.jpg',
+    'lib/assets/shop_pics/pexels-erik-scheel-95425.jpg',
+    'lib/assets/shop_pics/pexels-matheus-cenali-2733918.jpg',
+  ];
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        MySwiper(),
+        MySwiper(lisOfImages: images),
         const MovableString(
           text: "BEST PRICE",
           color: Colors.red,
