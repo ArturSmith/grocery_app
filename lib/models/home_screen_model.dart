@@ -5,8 +5,15 @@ import 'package:new_project/entitis/product.dart';
 class HomeScreenModel extends ChangeNotifier {
   final api = Api();
 
-  Future<List<Product>> getAllProdsWithDiscount() {
-    return Future.delayed(
-        const Duration(seconds: 3), (() => api.getAllProductsWithDiscount()));
+  List<Product> products = [];
+
+  Future<List<Product>> getProdsWithDiscount() {
+    final prods = api.getAllProductsWithDiscount();
+    return prods;
+  }
+
+  set setProducts(List<Product> products) {
+    this.products = products;
+    notifyListeners();
   }
 }
