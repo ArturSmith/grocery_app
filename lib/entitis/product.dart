@@ -5,9 +5,8 @@ part 'product.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Product {
   final String name, image, id;
-  int price;
+  int price, discount, count;
   bool isSeasonal;
-  int? discount, count;
 
   Product(this.isSeasonal, this.name, this.image, this.id, this.price,
       this.discount, this.count);

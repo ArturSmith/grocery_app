@@ -10,8 +10,8 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       json['name'] as String,
       json['id'] as String,
       json['image'] as String,
-      (json['products'] as List<Product>)
-          .map((e) => Product.fromJson(e as Map<String, Product>))
+      (json['products'] as List<dynamic>)
+          .map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
