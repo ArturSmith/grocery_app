@@ -49,11 +49,11 @@ class Api {
   }
 
   Future<List<Product>> getAllProductsWithDiscount() async {
-    final allProducts = getAllProducts();
+    final allProducts = await getAllProducts();
 
     List<Product> productsWithDiscount = [];
 
-    for (var product in allProducts as List<Product>) {
+    for (var product in allProducts) {
       if (product.discount != 1) {
         productsWithDiscount.add(product);
       }
