@@ -27,7 +27,7 @@ class ThemeStyles {
     );
   }
 
-  static setColor(BuildContext context, bool whiteWhenDark) {
+  static setThemeColor(BuildContext context, bool whiteWhenDark) {
     final provider = Provider.of<DarkThemeProvider>(context);
     final isDark = provider.getDarkTheme;
     Color textAndIcons =
@@ -36,4 +36,20 @@ class ThemeStyles {
         isDark ? AppColors.darkThemeBacgroundColor : Colors.white;
     return whiteWhenDark ? textAndIcons : background;
   }
+
+  static const gradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment(0.8, 1),
+    colors: <Color>[
+      Color(0xff1f005c),
+      Color(0xff5b0060),
+      Color(0xff870160),
+      Color(0xffac255e),
+      Color(0xffca485c),
+      Color(0xffe16b5c),
+      Color(0xfff39060),
+      Color(0xffffb56b),
+    ], // Gradient from https://learnui.design/tools/gradient-generator.html
+    tileMode: TileMode.mirror,
+  );
 }
