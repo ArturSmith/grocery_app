@@ -12,10 +12,7 @@ class CategoriesScreenBody extends StatelessWidget {
       child: GridView.builder(
           physics: const BouncingScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 240 / 240,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 0,
-              crossAxisCount: 2),
+              crossAxisSpacing: 10, mainAxisSpacing: 0, crossAxisCount: 2),
           itemCount: categories.length,
           itemBuilder: (BuildContext context, int index) {
             return CategoryCardWidget(

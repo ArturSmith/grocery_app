@@ -31,7 +31,7 @@ class CategoryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = Consts.screenSize(context).width;
+    final screenWidth = Consts.screenSize(context).width;
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Stack(
@@ -57,8 +57,8 @@ class CategoryCardWidget extends StatelessWidget {
               ),
               child: SvgPicture.asset(
                 image,
-                width: width * 0.35,
-                height: width * 0.35,
+                width: screenWidth * 0.35,
+                height: screenWidth * 0.35,
               ),
             ),
           ),
@@ -72,9 +72,9 @@ class CategoryCardWidget extends StatelessWidget {
                   border: Border.all(color: Colors.black)),
               child: Text(
                 categoryName,
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05,
                     color: Colors.black),
               ),
             ),

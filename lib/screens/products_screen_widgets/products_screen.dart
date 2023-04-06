@@ -30,15 +30,6 @@ class ProductsScreen extends StatelessWidget {
               child: IconButton(
                   onPressed: (() {}),
                   icon: Icon(
-                    IconlyBold.buy,
-                    color: ThemeStyles.setThemeColor(context, false),
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  onPressed: (() {}),
-                  icon: Icon(
                     Icons.favorite,
                     color: ThemeStyles.setThemeColor(context, false),
                   )),
