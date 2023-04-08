@@ -8,8 +8,15 @@ class Product {
   int price, discount, count;
   bool isSeasonal;
 
-  Product(this.isSeasonal, this.name, this.image, this.id, this.price,
-      this.discount, this.count);
+  Product(
+    this.isSeasonal,
+    this.name,
+    this.image,
+    this.id,
+    this.price,
+    this.discount,
+    this.count,
+  );
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
