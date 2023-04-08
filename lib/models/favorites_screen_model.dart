@@ -31,7 +31,5 @@ class FavoritesScreenModel extends ChangeNotifier {
       final product = await api.returnProductByID(id);
       favoriteProducts.add(product);
     }
-
-    notifyListeners();
   }
 }
