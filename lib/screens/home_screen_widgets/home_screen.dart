@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:new_project/entitis/category.dart';
 import 'package:new_project/models/home_screen_model.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/screens/home_screen_widgets/home_screen_section.dart';
 import 'package:provider/provider.dart';
-import '../../constants/theme_style.dart';
-import '../../widgets/best_price_string.dart';
-import 'home_screen_best_price_grid_view.dart';
 import '../../widgets/my_swiper.dart';
+import 'dart:math' as math;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,48 +16,48 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: readModel(context).getProdsWithDiscount(),
-        builder: ((context, AsyncSnapshot<List<Product>> snapshot) {
-          Widget body = const SizedBox.shrink();
-          if (snapshot.hasData) {
-            final list = snapshot.data as List<Product>;
-            body = _Body(listOfProducts: list);
-          } else {
-            body = Center(
-              child: CircularProgressIndicator(
-                color: ThemeStyles.setThemeColor(
-                  context,
-                  true,
-                ),
-              ),
-            );
-          }
-          return body;
-        }));
-  }
-}
+        future: readModel(context).getAllCategories(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Category>> snapshot) {
+          List<HomeScreenSection> sections = [];
 
-class _Body extends StatelessWidget {
-  _Body({super.key, required this.listOfProducts});
-  final List<Product> listOfProducts;
-  final List<String> images = [
-    'lib/assets/shop_pics/pexels-anna-shvets-3962285.jpg',
-    'lib/assets/shop_pics/pexels-erik-scheel-95425.jpg',
-    'lib/assets/shop_pics/pexels-matheus-cenali-2733918.jpg',
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        MySwiper(lisOfImages: images),
-        const MovableString(
-          text: "BEST PRICE",
-          color: Colors.red,
-        ),
-        HomeScreenBestPriceGridView(products: listOfProducts),
-        const MovableString(text: 'SEASONAL  PRODUCTS', color: Colors.green)
-      ],
-    );
+          if (snapshot.hasData) {
+            final data = snapshot.data as List<Category>;
+            for (var category in data) {
+              final randomColor =
+                  Color((math.Random().nextDouble() * 0xFFFFFF).toInt());
+
+              final products =
+                  readModel(context).getProductsOfCategory(category.id);
+              final section = HomeScreenSection(
+                  color: randomColor.withOpacity(1.0),
+                  products: products,
+                  emptylistText:
+                      "We don't have any products of ${category.name} category",
+                  movableStringText: category.name);
+              sections.add(section);
+            }
+          }
+
+          return CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              MySwiper(),
+              HomeScreenSection(
+                color: Colors.red,
+                products: readModel(context).getProdsWithDiscount(),
+                emptylistText: "We don't have any discounted products :(",
+                movableStringText: 'BEST PRICE',
+              ),
+              HomeScreenSection(
+                color: Colors.green,
+                products: readModel(context).getSeasonalProducts(),
+                emptylistText: "We don't have any seasonal products :(",
+                movableStringText: 'SEASONAL PRODUCTS',
+              ),
+              ...sections
+            ],
+          );
+        });
   }
 }
