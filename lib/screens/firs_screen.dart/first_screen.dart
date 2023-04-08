@@ -1,8 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
+import 'package:new_project/models/favorites_screen_model.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:new_project/widgets/sun_button.dart';
+import 'package:provider/provider.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -33,6 +36,7 @@ class _FirstScreenState extends State<FirstScreen>
   @override
   void initState() {
     super.initState();
+    setAppData(context);
     _animationControllerScale.forward();
     _animationControllerRotation
       ..forward()
@@ -60,6 +64,10 @@ class _FirstScreenState extends State<FirstScreen>
             FadeTransition(opacity: animation, child: child),
       ),
     );
+  }
+
+  void setAppData(BuildContext context) {
+    context.read<FavoritesScreenModel>().loadProductsFromHive();
   }
 
   @override
