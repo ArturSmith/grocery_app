@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/bascet_screen_widgets/bascet_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
+import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
 import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +77,9 @@ class _BottomBarScreenState extends State<BottomBarScreen>
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  onPressed: (() {}),
+                  onPressed: (() {
+                    Consts.navigate(const FavoritesScreen(), context);
+                  }),
                   icon: Icon(Icons.favorite,
                       color: ThemeStyles.setThemeColor(context, false))),
             )
