@@ -14,6 +14,15 @@ class Api {
     return instance;
   }
 
+  returnProductByID(String id) async {
+    final allProducts = await getAllProducts();
+    if (allProducts.any((element) => element.id == id)) {
+      return allProducts.firstWhere((element) => element.id == id);
+    } else {
+      return;
+    }
+  }
+
   Future<List<Category>> getAllCategories() async {
     final Dio dio = Dio();
     final responce =
@@ -62,15 +71,15 @@ class Api {
   }
 
   Future<List<Product>> getAllSeasonalProducts() async {
-    final allProducts = getAllProducts();
+    final allProducts = await getAllProducts();
 
-    List<Product> productsWithDiscount = [];
+    List<Product> seasonalProducts = [];
 
-    for (var product in allProducts as List<Product>) {
-      if (product.discount != 1) {
-        productsWithDiscount.add(product);
+    for (var product in allProducts) {
+      if (product.isSeasonal) {
+        seasonalProducts.add(product);
       }
     }
-    return productsWithDiscount;
+    return seasonalProducts;
   }
 }
