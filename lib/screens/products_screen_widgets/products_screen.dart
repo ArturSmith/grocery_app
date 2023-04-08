@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:new_project/constants/app_colors.dart';
+import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/models/products_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
+import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
 import 'package:new_project/screens/products_screen_widgets/sun_over_info.dart';
 import 'package:provider/provider.dart';
 import '../../entitis/product.dart';
@@ -28,7 +29,9 @@ class ProductsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  onPressed: (() {}),
+                  onPressed: (() {
+                    Consts.navigate(const FavoritesScreen(), context);
+                  }),
                   icon: Icon(
                     Icons.favorite,
                     color: ThemeStyles.setThemeColor(context, false),
@@ -90,6 +93,7 @@ class Body extends StatelessWidget {
                       id: data[index].id,
                       count: data[index].count,
                       color: Colors.white,
+                      isSeasonal: data[index].isSeasonal,
                     );
                   },
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

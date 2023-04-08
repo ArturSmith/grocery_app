@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../constants/routes.dart';
 import '../constants/strings.dart';
 import '../constants/theme_style.dart';
+import '../models/favorites_screen_model.dart';
 import '../models/home_screen_model.dart';
 import '../providers/dark_theme_provider.dart';
 
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => ProductScreenModel()),
         ChangeNotifierProvider(create: (_) => HomeScreenModel()),
         ChangeNotifierProvider(create: (_) => BascetScreenModel()),
+        ChangeNotifierProvider(create: (_) => FavoritesScreenModel()),
       ],
       child:
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
