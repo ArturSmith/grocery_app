@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
-import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
 import '../constants/strings.dart';
 
@@ -64,13 +69,14 @@ class _ProductCardState extends State<ProductCard> {
     return Card(
       elevation: 10,
       child: Container(
-        width: screenSize,
-        height: screenSize * 0.3,
+        // width: screenSize,
+        // height: screenSize * 0.3,
         decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: widget.color ?? Colors.white),
             borderRadius: BorderRadius.circular(10)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Flexible(
                 child: widget.discount <= 1
@@ -88,7 +94,7 @@ class _ProductCardState extends State<ProductCard> {
                         discount: widget.discount,
                       )),
             Flexible(
-              flex: 3,
+              flex: 2,
               child: FittedBox(
                 child: SvgPicture.asset(
                   widget.image,
@@ -98,7 +104,6 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ),
             Flexible(
-              flex: 1,
               child: Text(
                 widget.name,
                 style: const TextStyle(
@@ -119,19 +124,22 @@ class _ProductCardState extends State<ProductCard> {
                           onTapFavorite(context);
                         }),
                         icon: isIn
-                            ? const Icon(
+                            ? Icon(
                                 IconlyLight.delete,
                                 color: Colors.amber,
+                                size: screenSize * 0.06,
                               )
-                            : const Icon(
+                            : Icon(
                                 IconlyLight.heart,
+                                size: screenSize * 0.06,
                               )),
                   ),
                   Flexible(
                     child: IconButton(
                         onPressed: (() {}),
-                        icon: const Icon(
+                        icon: Icon(
                           IconlyLight.buy,
+                          size: screenSize * 0.06,
                         )),
                   ),
                 ],
@@ -163,7 +171,7 @@ class DiscountPrice extends StatelessWidget {
         style: DefaultTextStyle.of(context).style,
         children: <TextSpan>[
           TextSpan(
-            text: '$price ',
+            text: '${price.toStringAsFixed(1)} ',
             style: TextStyle(
                 color: Colors.black,
                 decoration: TextDecoration.lineThrough,

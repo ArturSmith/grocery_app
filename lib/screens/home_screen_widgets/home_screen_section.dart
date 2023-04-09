@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/entitis/product.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
 import 'package:new_project/widgets/movable_string.dart';
-import 'package:provider/provider.dart';
 import '../../widgets/product_card.dart';
 
 class HomeScreenSection extends StatelessWidget {
@@ -87,9 +92,11 @@ class HomeScreenSection extends StatelessWidget {
                       );
                     }
                   } else {
-                    body = const Center(
+                    body = Center(
                       child: CircularProgressIndicator(
-                          color: AppColors.darkThemeBacgroundColor),
+                          color: Consts.isDark(context)
+                              ? Colors.white
+                              : AppColors.darkThemeBacgroundColor),
                     );
                   }
                   return body;

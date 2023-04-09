@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../services/dark_theme_prefs.dart';
 
 class DarkThemeProvider with ChangeNotifier {

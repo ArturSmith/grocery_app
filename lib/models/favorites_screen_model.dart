@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:hive/hive.dart';
+
+// Project imports:
 import 'package:new_project/api/api.dart';
-
 import 'package:new_project/entitis/product.dart';
-
 import '../constants/strings.dart';
 
 class FavoritesScreenModel extends ChangeNotifier {

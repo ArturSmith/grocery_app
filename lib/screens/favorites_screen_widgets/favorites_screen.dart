@@ -1,11 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
 import 'package:new_project/widgets/product_card.dart';
-import 'package:provider/provider.dart';
-
 import '../../constants/strings.dart';
 
 class FavoritesScreen extends StatefulWidget {

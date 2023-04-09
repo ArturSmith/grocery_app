@@ -1,10 +1,17 @@
+// Dart imports:
+import 'dart:math' as math;
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/entitis/category.dart';
 import 'package:new_project/models/home_screen_model.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen_section.dart';
-import 'package:provider/provider.dart';
 import '../../widgets/my_swiper.dart';
-import 'dart:math' as math;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

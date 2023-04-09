@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Str {
@@ -23,4 +24,6 @@ class Str {
   static const WRAPPER = "/Wrapper";
   static const FIRST_SCREEN = "/FirstScreen";
   static const FAVORITES_SCREEN = "/FavoritesScreen";
+  static const SIGN_UP_SCREEN = "/SignUpScreen";
+  static const LOG_IN_SCREEN = "/LoginScreen";
 }

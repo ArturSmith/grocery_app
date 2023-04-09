@@ -380,6 +380,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  import_sorter:
+    dependency: "direct main"
+    description:
+      name: import_sorter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.0"
   intl:
     dependency: transitive
     description:
@@ -735,6 +742,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  tint:
+    dependency: transitive
+    description:
+      name: tint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:

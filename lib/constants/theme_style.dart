@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:provider/provider.dart';
 
 class ThemeStyles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {

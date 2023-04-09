@@ -1,5 +1,10 @@
-import 'package:card_swiper/card_swiper.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:card_swiper/card_swiper.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 
 class MySwiper extends StatelessWidget {

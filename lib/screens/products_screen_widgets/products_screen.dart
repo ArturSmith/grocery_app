@@ -1,4 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
@@ -6,7 +12,6 @@ import 'package:new_project/models/products_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
 import 'package:new_project/screens/products_screen_widgets/sun_over_info.dart';
-import 'package:provider/provider.dart';
 import '../../entitis/product.dart';
 import '../../widgets/product_card.dart';
 import 'moon_over_info.dart';
@@ -30,7 +35,8 @@ class ProductsScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                   onPressed: (() {
-                    Consts.navigate(const FavoritesScreen(), context);
+                    Consts.navigate(
+                        const FavoritesScreen(), context, 300, true);
                   }),
                   icon: Icon(
                     Icons.favorite,

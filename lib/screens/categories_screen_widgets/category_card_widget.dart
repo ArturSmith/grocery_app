@@ -1,9 +1,16 @@
+// Dart imports:
+import 'dart:math' as math;
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/entitis/product.dart';
 import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
-import 'dart:math' as math;
 
 class CategoryCardWidget extends StatelessWidget {
   CategoryCardWidget(

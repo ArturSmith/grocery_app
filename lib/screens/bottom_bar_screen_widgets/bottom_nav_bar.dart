@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/theme_style.dart';
-import 'package:provider/provider.dart';
 import '../../providers/dark_theme_provider.dart';
 
 class BottomNavBar extends StatelessWidget {

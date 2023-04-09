@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.8.0
   firebase_auth: ^4.3.0
+  cloud_firestore: ^4.5.0
   email_validator: ^2.1.17
   shared_preferences: ^2.0.20
   provider: ^6.0.5
@@ -48,8 +49,8 @@ dependencies:
   marquee: ^2.2.3
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  cloud_firestore: ^4.5.0
   dio: ^5.1.1
+  import_sorter: ^4.6.0
   
 
 dev_dependencies:

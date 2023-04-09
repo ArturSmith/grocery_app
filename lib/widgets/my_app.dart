@@ -1,9 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:new_project/models/longin_screen_model.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/api/api.dart';
 import 'package:new_project/models/bascet_screen_model.dart';
 import 'package:new_project/models/categories_screen_model.dart';
 import 'package:new_project/models/products_screen_model.dart';
-import 'package:provider/provider.dart';
 import '../constants/routes.dart';
 import '../constants/strings.dart';
 import '../constants/theme_style.dart';
@@ -42,6 +48,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => HomeScreenModel()),
         ChangeNotifierProvider(create: (_) => BascetScreenModel()),
         ChangeNotifierProvider(create: (_) => FavoritesScreenModel()),
+        ChangeNotifierProvider(create: (_) => LoginScreenModel()),
       ],
       child:
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {

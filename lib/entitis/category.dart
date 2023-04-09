@@ -1,5 +1,8 @@
-import 'package:new_project/entitis/product.dart';
+// Package imports:
 import 'package:json_annotation/json_annotation.dart';
+
+// Project imports:
+import 'package:new_project/entitis/product.dart';
 
 part 'category.g.dart';
 

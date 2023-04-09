@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:new_project/entitis/category.dart';
 import 'package:new_project/screens/categories_screen_widgets/category_card_widget.dart';
 

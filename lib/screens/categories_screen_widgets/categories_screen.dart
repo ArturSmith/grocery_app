@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/entitis/category.dart';
 import 'package:new_project/models/categories_screen_model.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen_body.dart';
-import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});

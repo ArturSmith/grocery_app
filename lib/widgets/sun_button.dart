@@ -1,12 +1,17 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class SunButton extends StatelessWidget {
   const SunButton(
-      {super.key, this.onTap, required this.animation, required this.size});
+      {super.key,
+      this.onTap,
+      required this.animation,
+      required this.size,
+      required this.color});
   final Function? onTap;
   final Animation<double> animation;
   final double size;
-
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
@@ -19,7 +24,7 @@ class SunButton extends StatelessWidget {
             Transform.rotate(
               angle: 1,
               child: Container(
-                color: Colors.amber,
+                color: color,
                 width: size,
                 height: size,
               ),
@@ -27,7 +32,7 @@ class SunButton extends StatelessWidget {
             Transform.rotate(
               angle: 2,
               child: Container(
-                color: Colors.amber,
+                color: color,
                 width: size,
                 height: size,
               ),
@@ -35,7 +40,7 @@ class SunButton extends StatelessWidget {
             Transform.rotate(
               angle: 3,
               child: Container(
-                color: Colors.amber,
+                color: color,
                 width: size,
                 height: size,
               ),

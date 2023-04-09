@@ -1,11 +1,20 @@
+// Dart imports:
 import 'dart:ui';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
 import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
+import 'package:new_project/services/auth.dart';
 import 'package:new_project/widgets/sun_button.dart';
-import 'package:provider/provider.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -36,7 +45,8 @@ class _FirstScreenState extends State<FirstScreen>
   @override
   void initState() {
     super.initState();
-    setAppData(context);
+    context.read<FavoritesScreenModel>().loadProductsFromHive();
+    goAhead();
     _animationControllerScale.forward();
     _animationControllerRotation
       ..forward()
@@ -45,7 +55,6 @@ class _FirstScreenState extends State<FirstScreen>
           _animationControllerRotation.repeat();
         }
       });
-    goAhead();
   }
 
   goAhead() async {
@@ -59,15 +68,11 @@ class _FirstScreenState extends State<FirstScreen>
       context,
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 500),
-        pageBuilder: ((_, __, ___) => const BottomBarScreen()),
+        pageBuilder: ((_, __, ___) => const Wrapper()),
         transitionsBuilder: (context, animation, secondaryAnimation, child) =>
             FadeTransition(opacity: animation, child: child),
       ),
     );
-  }
-
-  void setAppData(BuildContext context) {
-    context.read<FavoritesScreenModel>().loadProductsFromHive();
   }
 
   @override
@@ -103,18 +108,25 @@ class _AnimationOnFirstScreen extends StatelessWidget {
   final animationScale;
   @override
   Widget build(BuildContext context) {
+    final screenSize = Consts.screenSize(context);
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Spacer(flex: 10),
-        const Text(
-          "WELCOME",
+        Text(
+          "BERKAT",
           style: TextStyle(
-              color: Colors.white, fontSize: 50, fontWeight: FontWeight.w900),
+              color: Colors.white,
+              fontSize: screenSize.width * 0.15,
+              fontWeight: FontWeight.w900),
         ),
         const Spacer(flex: 3),
         ScaleTransition(
             scale: animationScale,
-            child: SunButton(animation: animationRotation, size: 100)),
+            child: SunButton(
+              animation: animationRotation,
+              size: screenSize.width * 0.2,
+              color: Colors.amber,
+            )),
         const Spacer(flex: 10),
       ]),
     );

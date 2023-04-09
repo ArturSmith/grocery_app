@@ -1,4 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
@@ -6,12 +12,25 @@ import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/bascet_screen_widgets/bascet_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
 import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
-import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:new_project/screens/user_screen_widgets/user_screen.dart';
+import 'package:new_project/services/auth.dart';
 import '../../widgets/moon_button.dart';
 import '../../widgets/sun_button.dart';
 import 'bottom_nav_bar.dart';
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider.value(
+      value: AuthService().user,
+      initialData: null,
+      child: const BottomBarScreen(),
+    );
+  }
+}
 
 class BottomBarScreen extends StatefulWidget {
   const BottomBarScreen({super.key});
@@ -62,12 +81,10 @@ class _BottomBarScreenState extends State<BottomBarScreen>
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<DarkThemeProvider>(context);
-    final bool isDark = provider.getDarkTheme;
     return Scaffold(
         appBar: AppBar(
           elevation: 10,
-          flexibleSpace: isDark
+          flexibleSpace: Consts.isDark(context)
               ? null
               : Container(
                   decoration:
@@ -78,7 +95,8 @@ class _BottomBarScreenState extends State<BottomBarScreen>
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                   onPressed: (() {
-                    Consts.navigate(const FavoritesScreen(), context);
+                    Consts.navigate(
+                        const FavoritesScreen(), context, 300, true);
                   }),
                   icon: Icon(Icons.favorite,
                       color: ThemeStyles.setThemeColor(context, false))),
@@ -91,9 +109,13 @@ class _BottomBarScreenState extends State<BottomBarScreen>
           ),
           centerTitle: true,
         ),
-        floatingActionButton: isDark
+        floatingActionButton: Consts.isDark(context)
             ? MoonButton(animation: _animation)
-            : SunButton(animation: _animation, size: 40),
+            : SunButton(
+                animation: _animation,
+                size: 40,
+                color: Colors.amber,
+              ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         extendBody: true,
         body: _pages[_selectedIndex]["page"],
