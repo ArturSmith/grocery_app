@@ -7,6 +7,7 @@ import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/buttons_decoration.dart';
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
+import 'package:new_project/constants/strings.dart';
 import 'package:new_project/constants/text_fiels_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/screens/authenticate_screen.dart/signup_screen.dart';
