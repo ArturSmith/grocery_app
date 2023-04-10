@@ -1,4 +1,5 @@
 class MyUser {
   String uid;
-  MyUser(this.uid);
+  String? userName;
+  MyUser(this.uid, this.userName);
 }
