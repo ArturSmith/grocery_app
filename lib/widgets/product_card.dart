@@ -69,8 +69,6 @@ class _ProductCardState extends State<ProductCard> {
     return Card(
       elevation: 10,
       child: Container(
-        // width: screenSize,
-        // height: screenSize * 0.3,
         decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: widget.color ?? Colors.white),
@@ -96,7 +94,7 @@ class _ProductCardState extends State<ProductCard> {
             Flexible(
               flex: 2,
               child: FittedBox(
-                child: SvgPicture.asset(
+                child: Image.network(
                   widget.image,
                   height: screenSize * 0.25,
                   width: screenSize * 0.25,

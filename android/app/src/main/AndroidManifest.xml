@@ -2,9 +2,9 @@
     package="com.example.new_project">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="new_project"
+        android:label="BERKAT"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/sun_icon"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
