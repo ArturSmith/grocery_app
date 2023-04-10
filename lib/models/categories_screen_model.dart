@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:new_project/api/api.dart';
-import 'package:new_project/entitis/category.dart';
+import 'package:new_project/entities/category.dart';
 
 class CategoriesScreenModel extends ChangeNotifier {
   final api = Api();

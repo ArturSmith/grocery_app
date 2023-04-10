@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
 import 'package:new_project/constants/consts.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/product.dart';
 import 'package:new_project/screens/products_screen_widgets/products_screen.dart';
 
 class CategoryCardWidget extends StatelessWidget {

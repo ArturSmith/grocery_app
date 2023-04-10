@@ -2,8 +2,8 @@
 import 'package:dio/dio.dart';
 
 // Project imports:
-import 'package:new_project/entitis/category.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/category.dart';
+import 'package:new_project/entities/product.dart';
 
 class Api {
   final String id;

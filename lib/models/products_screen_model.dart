@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 // Project imports:
 import 'package:new_project/api/api.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/product.dart';
 
 class ProductScreenModel extends ChangeNotifier {
   final api = Api();

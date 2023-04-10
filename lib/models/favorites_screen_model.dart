@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 
 // Project imports:
 import 'package:new_project/api/api.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/product.dart';
 import '../constants/strings.dart';
 
 class FavoritesScreenModel extends ChangeNotifier {
@@ -32,7 +32,9 @@ class FavoritesScreenModel extends ChangeNotifier {
 
     for (var id in listOfIDs) {
       final product = await api.returnProductByID(id);
-      favoriteProducts.add(product);
+      if (product != null) {
+        favoriteProducts.add(product);
+      }
     }
   }
 }

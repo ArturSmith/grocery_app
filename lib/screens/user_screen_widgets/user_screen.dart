@@ -1,14 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:new_project/constants/app_colors.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
 
 // Project imports:
+import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
-import 'package:new_project/entitis/my_user.dart';
+import 'package:new_project/entities/my_user.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/authenticate_screen.dart/logIn_screen.dart';
 import 'package:new_project/services/auth.dart';

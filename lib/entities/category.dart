@@ -2,7 +2,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 // Project imports:
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/product.dart';
 
 part 'category.g.dart';
 

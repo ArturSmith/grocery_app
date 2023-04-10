@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:new_project/constants/buttons_decoration.dart';
 import 'package:new_project/constants/consts.dart';
-import 'package:new_project/entitis/my_user.dart';
+import 'package:new_project/entities/my_user.dart';
 import 'package:new_project/screens/authenticate_screen.dart/logIn_screen.dart';
 
 class BascetScreen extends StatelessWidget {

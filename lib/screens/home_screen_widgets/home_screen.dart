@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:new_project/entitis/category.dart';
+import 'package:new_project/entities/category.dart';
 import 'package:new_project/models/home_screen_model.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen_section.dart';
 import '../../widgets/my_swiper.dart';

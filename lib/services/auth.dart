@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 // Project imports:
-import 'package:new_project/entitis/my_user.dart';
+import 'package:new_project/entities/my_user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

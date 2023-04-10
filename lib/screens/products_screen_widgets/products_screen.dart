@@ -12,7 +12,7 @@ import 'package:new_project/models/products_screen_model.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
 import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
 import 'package:new_project/screens/products_screen_widgets/sun_over_info.dart';
-import '../../entitis/product.dart';
+import '../../entities/product.dart';
 import '../../widgets/product_card.dart';
 import 'moon_over_info.dart';
 

@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:new_project/models/longin_screen_model.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
@@ -9,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:new_project/api/api.dart';
 import 'package:new_project/models/bascet_screen_model.dart';
 import 'package:new_project/models/categories_screen_model.dart';
+import 'package:new_project/models/longin_screen_model.dart';
 import 'package:new_project/models/products_screen_model.dart';
 import '../constants/routes.dart';
 import '../constants/strings.dart';

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/consts.dart';
-import 'package:new_project/entitis/product.dart';
+import 'package:new_project/entities/product.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
 import 'package:new_project/widgets/movable_string.dart';
 import '../../widgets/product_card.dart';
