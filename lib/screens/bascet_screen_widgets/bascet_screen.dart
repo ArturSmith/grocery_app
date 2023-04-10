@@ -24,6 +24,7 @@ class BascetScreen extends StatelessWidget {
     String message = user == null
         ? "Please login to see your bascet"
         : "Your bascet is empty";
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50),

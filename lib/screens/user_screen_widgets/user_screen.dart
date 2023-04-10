@@ -1,13 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:new_project/constants/app_colors.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/consts.dart';
-import 'package:new_project/constants/strings.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/entitis/my_user.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
@@ -44,15 +43,14 @@ class _UserScreenState extends State<UserScreen> {
               children: [
                 TextButton(
                     onPressed: (() {
-                      if (Navigator.canPop(context)) {
-                        Navigator.pop(context);
-                      }
+                      Navigator.pop(context);
                     }),
                     child: const Text("Cancel")),
                 const SizedBox(width: 10),
                 TextButton(
                     onPressed: (() async {
                       await auth.signOut();
+                      Navigator.pop(context);
                     }),
                     child: const Text("Yes")),
               ],
@@ -65,13 +63,38 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<DarkThemeProvider>(context);
     final user = Provider.of<MyUser?>(context);
+    final screenSize = Consts.screenSize(context);
 
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          const Text("UserName"),
+          Container(
+            height: screenSize.aspectRatio * 150,
+            width: screenSize.aspectRatio * 150,
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: ThemeStyles.setThemeColor(context, true), width: 3),
+                borderRadius: BorderRadius.circular(50)),
+            child: Icon(
+              Icons.person,
+              size: screenSize.aspectRatio * 100,
+              color: Consts.isDark(context)
+                  ? Colors.white
+                  : AppColors.darkThemeBacgroundColor,
+            ),
+          ),
+          const SizedBox(height: 5),
+          user != null
+              ? Text(
+                  user.userName ?? "Anonumous",
+                  style: TextStyle(fontSize: screenSize.width * 0.07),
+                )
+              : Text(
+                  "User",
+                  style: TextStyle(fontSize: screenSize.width * 0.07),
+                ),
           const SizedBox(height: 10),
           Divider(
             color: ThemeStyles.setThemeColor(context, true),
@@ -112,7 +135,7 @@ class _UserScreenState extends State<UserScreen> {
             onTap: () {
               user == null ? Login(context) : _showLogOutDialog();
             },
-            leading: Icons.logout,
+            leading: user == null ? Icons.login : Icons.logout,
             title: user == null ? "LogIn" : "Logout",
             trailing: Icons.keyboard_arrow_right_outlined,
           ),

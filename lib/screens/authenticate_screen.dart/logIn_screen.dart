@@ -10,6 +10,7 @@ import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/text_fiels_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/screens/authenticate_screen.dart/signup_screen.dart';
+import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:new_project/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -40,6 +41,7 @@ class LoginScreen extends StatelessWidget {
             },
           ),
         ),
+        resizeToAvoidBottomInset: false,
         body: const Forms());
   }
 }
@@ -54,13 +56,7 @@ class _FormsState extends State<Forms> {
   String email = '';
   String password = '';
   bool errorVisible = false;
-  GlobalKey<FormState>? _formKey;
-
-  @override
-  void initState() {
-    super.initState();
-    _formKey = GlobalKey<FormState>();
-  }
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final AuthService _auth = AuthService();
 
@@ -100,15 +96,16 @@ class _FormsState extends State<Forms> {
             ),
             const Spacer(flex: 2),
             TextFormField(
-              validator: (value) =>
-                  value!.isEmpty ? "Enter a password 8+ chars long" : null,
+              validator: (value) => value!.length < 9 || value.isEmpty
+                  ? "Enter a password 9+ chars long"
+                  : null,
               onChanged: (value) {
                 setState(() {
                   password = value;
                 });
               },
               obscureText: true,
-              maxLength: 8,
+              maxLength: 9,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
@@ -121,14 +118,14 @@ class _FormsState extends State<Forms> {
             ),
             ElevatedButton(
               onPressed: (() async {
-                if (_formKey!.currentState!.validate()) {
-                  dynamic result =
-                      await _auth.logInWithEmailAndPassword(email, password);
+                if (_formKey.currentState!.validate()) {
+                  dynamic result = await _auth.logInWithEmailAndPassword(
+                      email.trim(), password.trim());
                   if (result == null) {
                     errorVisible = true;
                   } else {
-                    Navigator.pop(context);
                     errorVisible = false;
+                    Navigator.pop(context);
                   }
                 }
                 setState(() {});

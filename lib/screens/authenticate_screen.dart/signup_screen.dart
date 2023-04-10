@@ -9,44 +9,97 @@ import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/text_fiels_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
+import 'package:new_project/screens/authenticate_screen.dart/logIn_screen.dart';
+import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
+import 'package:new_project/services/auth.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = Consts.screenSize(context);
-    final screenWidth = screenSize.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Sign Up",
-          style: MyTextDecoration.titleTextStyle(context),
-        ),
-        centerTitle: true,
-        flexibleSpace: Consts.isDark(context)
-            ? null
-            : Container(
-                decoration: const BoxDecoration(gradient: ThemeStyles.gradient),
-              ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Consts.isDark(context) ? Colors.black : Colors.white,
+        appBar: AppBar(
+          title: Text(
+            "Sign Up",
+            style: MyTextDecoration.titleTextStyle(context),
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          centerTitle: true,
+          flexibleSpace: Consts.isDark(context)
+              ? null
+              : Container(
+                  decoration:
+                      const BoxDecoration(gradient: ThemeStyles.gradient),
+                ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Consts.isDark(context) ? Colors.black : Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        resizeToAvoidBottomInset: false,
+        body: Forms());
+  }
+}
+
+class Forms extends StatefulWidget {
+  const Forms({super.key});
+
+  @override
+  State<Forms> createState() => _FormsState();
+}
+
+class _FormsState extends State<Forms> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String email = '';
+  String password = '';
+  String confirmedPassword = '';
+  String userName = '';
+  bool errorVisible = false;
+  AuthService _auth = AuthService();
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = Consts.screenSize(context).width;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Form(
+        key: _formKey,
         child: Column(
           children: [
             const Spacer(flex: 10),
+            Visibility(
+              visible: errorVisible,
+              child: const FittedBox(
+                  child: Text(
+                "Invalid email or password",
+                style: TextStyle(color: Colors.red),
+              )),
+            ),
+            const Spacer(flex: 1),
+            TextFormField(
+              onChanged: ((value) => setState(() => userName = value)),
+              validator: (value) => value!.isEmpty ? "Enter a user name" : null,
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.next,
+              toolbarOptions: const ToolbarOptions(
+                  copy: true, paste: true, selectAll: true),
+              cursorColor: Colors.black,
+              decoration:
+                  TextFieldDecoration.decoration(context, "User name", null),
+            ),
+            const Spacer(flex: 1),
             Padding(
-              padding: const EdgeInsets.only(bottom: 25),
-              child: TextField(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: TextFormField(
+                onChanged: ((value) => setState(() => email = value)),
+                validator: (value) => value!.isEmpty ? "Enter an email" : null,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 toolbarOptions: const ToolbarOptions(
@@ -57,9 +110,12 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             const Spacer(flex: 1),
-            TextField(
+            TextFormField(
+              onChanged: ((value) => setState(() => password = value)),
+              validator: (value) =>
+                  value!.length < 9 ? "Enter a password 9+ chars long" : null,
               obscureText: true,
-              maxLength: 8,
+              maxLength: 9,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.next,
@@ -68,9 +124,19 @@ class SignUpScreen extends StatelessWidget {
                   TextFieldDecoration.decoration(context, "Password", null),
             ),
             const Spacer(flex: 1),
-            TextField(
+            TextFormField(
+              onChanged: ((value) => setState(() => confirmedPassword = value)),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Confirm password";
+                } else if (value != password) {
+                  return "Wrong password";
+                } else {
+                  return null;
+                }
+              },
               obscureText: true,
-              maxLength: 8,
+              maxLength: 9,
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
@@ -80,7 +146,20 @@ class SignUpScreen extends StatelessWidget {
             ),
             const Spacer(flex: 1),
             ElevatedButton(
-              onPressed: (() {}),
+              onPressed: (() async {
+                if (_formKey.currentState!.validate()) {
+                  dynamic result = _auth.signUpWithEmailAndPassword(
+                      email.trim(), password.trim(), userName);
+                  if (result == null) {
+                    errorVisible = true;
+                  } else {
+                    errorVisible = false;
+
+                    Consts.navigate(const LoginScreen(), context, 100, true);
+                  }
+                }
+                setState(() {});
+              }),
               style: ButtonsDecoration.buttonDecor(screenWidth, context),
               child: Text(
                 "SignUp",
