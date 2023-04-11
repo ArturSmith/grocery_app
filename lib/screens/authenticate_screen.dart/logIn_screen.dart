@@ -7,11 +7,9 @@ import 'package:new_project/constants/app_colors.dart';
 import 'package:new_project/constants/buttons_decoration.dart';
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
-import 'package:new_project/constants/strings.dart';
 import 'package:new_project/constants/text_fiels_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/screens/authenticate_screen.dart/signup_screen.dart';
-import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
 import 'package:new_project/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -58,6 +56,10 @@ class _FormsState extends State<Forms> {
   String password = '';
   bool errorVisible = false;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  navigatePop() {
+    Navigator.pop(context);
+  }
 
   final AuthService _auth = AuthService();
 
@@ -126,7 +128,7 @@ class _FormsState extends State<Forms> {
                     errorVisible = true;
                   } else {
                     errorVisible = false;
-                    Navigator.pop(context);
+                    navigatePop();
                   }
                 }
                 setState(() {});

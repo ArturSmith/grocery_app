@@ -63,6 +63,10 @@ class _FormsState extends State<Forms> {
   bool errorVisible = false;
   AuthService _auth = AuthService();
 
+  navigatePop() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = Consts.screenSize(context).width;
@@ -154,7 +158,7 @@ class _FormsState extends State<Forms> {
                     errorVisible = true;
                   } else {
                     errorVisible = false;
-                    Navigator.pop(context);
+                    navigatePop();
                   }
                 }
                 setState(() {});
