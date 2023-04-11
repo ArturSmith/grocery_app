@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
+import 'package:new_project/screens/firs_screen.dart/first_screen.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
@@ -16,6 +18,7 @@ import '../constants/theme_style.dart';
 import '../models/favorites_screen_model.dart';
 import '../models/home_screen_model.dart';
 import '../providers/dark_theme_provider.dart';
+import '../screens/firs_screen.dart/warapper.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -56,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           theme: ThemeStyles.themeData(themeProvider.getDarkTheme, context),
           routes: Routes.routes,
-          initialRoute: Str.FIRST_SCREEN,
+          home: const FirstScreen(),
         );
       }),
     );

@@ -1,19 +1,15 @@
-// Dart imports:
-import 'dart:ui';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
+import 'package:new_project/screens/firs_screen.dart/warapper.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/models/favorites_screen_model.dart';
-import 'package:new_project/screens/bottom_bar_screen_widgets/botton_bar_screen.dart';
-import 'package:new_project/services/auth.dart';
 import 'package:new_project/widgets/sun_button.dart';
 
 class FirstScreen extends StatefulWidget {

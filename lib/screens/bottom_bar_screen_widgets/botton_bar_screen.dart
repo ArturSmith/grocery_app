@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:new_project/screens/firs_screen.dart/first_screen.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
@@ -18,19 +19,6 @@ import 'package:new_project/services/auth.dart';
 import '../../widgets/moon_button.dart';
 import '../../widgets/sun_button.dart';
 import 'bottom_nav_bar.dart';
-
-class Wrapper extends StatelessWidget {
-  const Wrapper({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamProvider.value(
-      value: AuthService().user,
-      initialData: null,
-      child: const BottomBarScreen(),
-    );
-  }
-}
 
 class BottomBarScreen extends StatefulWidget {
   const BottomBarScreen({super.key});
