@@ -9,7 +9,7 @@ import 'package:new_project/constants/consts.dart';
 import 'package:new_project/constants/my_text_decoration.dart';
 import 'package:new_project/constants/theme_style.dart';
 import 'package:new_project/providers/dark_theme_provider.dart';
-import 'package:new_project/screens/bascet_screen_widgets/bascet_screen.dart';
+import 'package:new_project/screens/basket_screen_widgets/basket_screen.dart';
 import 'package:new_project/screens/categories_screen_widgets/categories_screen.dart';
 import 'package:new_project/screens/favorites_screen_widgets/favorites_screen.dart';
 import 'package:new_project/screens/home_screen_widgets/home_screen.dart';
@@ -46,7 +46,7 @@ class _BottomBarScreenState extends State<BottomBarScreen>
   final List<Map<String, dynamic>> _pages = [
     {"page": const HomeScreen(), "title": "Home"},
     {"page": const CategoriesScreen(), "title": "Categories"},
-    {"page": const BascetScreen(), "title": "Order"},
+    {"page": const BasketScreen(), "title": "Order"},
     {"page": const UserScreen(), "title": "User settings"}
   ];
 

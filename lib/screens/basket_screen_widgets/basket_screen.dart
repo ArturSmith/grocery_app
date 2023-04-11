@@ -10,8 +10,8 @@ import 'package:new_project/constants/consts.dart';
 import 'package:new_project/entities/my_user.dart';
 import 'package:new_project/screens/authenticate_screen.dart/logIn_screen.dart';
 
-class BascetScreen extends StatelessWidget {
-  const BascetScreen({super.key});
+class BasketScreen extends StatelessWidget {
+  const BasketScreen({super.key});
 
   void lognin(BuildContext context) {
     Consts.navigate(const LoginScreen(), context, 300, false);
@@ -22,8 +22,8 @@ class BascetScreen extends StatelessWidget {
     final screenWidth = Consts.screenSize(context).width;
     final user = Provider.of<MyUser?>(context);
     String message = user == null
-        ? "Please login to see your bascet"
-        : "Your bascet is empty";
+        ? "Please login to see your basket"
+        : "Your basket is empty";
 
     return Center(
       child: Padding(

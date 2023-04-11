@@ -11,13 +11,12 @@ class TextFieldDecoration {
     final borderRadius = BorderRadius.circular(30);
     final isDark = Consts.isDark(context);
     return InputDecoration(
-      filled: true,
-      fillColor: Colors.white,
       isCollapsed: true,
       contentPadding: const EdgeInsets.all(15),
       errorText: errorText,
       labelText: label,
-      labelStyle: const TextStyle(color: AppColors.darkThemeBacgroundColor),
+      labelStyle: TextStyle(
+          color: isDark ? Colors.white : AppColors.darkThemeBacgroundColor),
       floatingLabelStyle:
           TextStyle(color: isDark ? Colors.white : Colors.black),
       floatingLabelBehavior:

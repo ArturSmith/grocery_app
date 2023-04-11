@@ -83,6 +83,7 @@ flutter:
   assets:
       - lib/assets/images/
       - lib/assets/shop_pics/
+      - lib/assets/gifs/
       # - lib/assets/images/Fruechte-coloured.svg
       # - lib/assets/images/fruits.svg
       # - lib/assets/images/pumpkin.svg
